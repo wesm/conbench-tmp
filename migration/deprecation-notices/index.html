@@ -18,7 +18,7 @@
         <link rel="prev" href="../legacy-parity-roadmap/">
       
       
-        <link rel="next" href="../legacy-burndown-matrix/">
+        <link rel="next" href="../../operations/">
       
       
         
@@ -954,33 +954,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../legacy-burndown-matrix/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Legacy Burndown Matrix
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1381,8 +1354,8 @@ without promising source-compatible shims for retired packages.</p>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Migration guide:
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>https://conbench.github.io/conbench/migration/python-app/
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>Legacy burndown matrix:
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>https://conbench.github.io/conbench/migration/legacy-burndown-matrix/
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>Legacy parity roadmap:
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>https://conbench.github.io/conbench/migration/legacy-parity-roadmap/
 </span></code></pre></div>
 <h2 id="benchadapt"><code>benchadapt</code><a class="headerlink" href="#benchadapt" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>`benchadapt` is retired as a maintained Conbench package. Keep the useful
@@ -1484,8 +1457,8 @@ without promising source-compatible shims for retired packages.</p>
 <ul>
 <li>the migration guide link:
   <a href="https://conbench.github.io/conbench/migration/python-app/">https://conbench.github.io/conbench/migration/python-app/</a>,</li>
-<li>the legacy burndown matrix link:
-  <a href="https://conbench.github.io/conbench/migration/legacy-burndown-matrix/">https://conbench.github.io/conbench/migration/legacy-burndown-matrix/</a>,</li>
+<li>the legacy parity roadmap link:
+  <a href="https://conbench.github.io/conbench/migration/legacy-parity-roadmap/">https://conbench.github.io/conbench/migration/legacy-parity-roadmap/</a>,</li>
 <li>the runnable migration recipe link:
   <a href="https://github.com/conbench/conbench/blob/main/examples/migration/gbench_to_cli_submit.py">https://github.com/conbench/conbench/blob/main/examples/migration/gbench_to_cli_submit.py</a>,</li>
 <li>the supported write path: <code>conbench results submit</code>,</li>
@@ -1509,7 +1482,7 @@ task without requiring a source-compatible package shim.</p>
 <li>Preserve old package distributions unless there is a security or legal
    reason to remove them. The notice should make the package retired, not break
    pinned environments that still need time to migrate.</li>
-<li>Link to the migration guide, the burndown matrix, and the runnable
+<li>Link to the migration guide, the parity roadmap, and the runnable
    <code>examples/migration/gbench_to_cli_submit.py</code> recipe from every publication
    surface.</li>
 <li>For <code>benchalerts</code>, include both replacements: synchronous PR diagnostics via
@@ -1524,12 +1497,13 @@ task without requiring a source-compatible package shim.</p>
 <ul>
 <li>open each public package/discovery page in a clean browser session and verify
   the retirement notice is visible without requiring repository context,</li>
-<li>confirm every notice links back to the migration guide, burndown matrix, and
+<li>confirm every notice links back to the migration guide, parity roadmap, and
   runnable migration recipe,</li>
 <li>confirm no notice promises source-compatible <code>benchadapt</code>, <code>benchconnect</code>,
   <code>benchclients</code>, <code>benchalerts</code>, <code>benchrun</code>, <code>conbenchlegacy</code>, or
   <code>conbench_client</code> imports,</li>
-<li>record the published URLs in the kata issue before closing it.</li>
+<li>record the published URLs in the migration tracking notes for that deployment
+  or package.</li>
 </ul>
 
 

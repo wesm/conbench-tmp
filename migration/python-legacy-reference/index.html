@@ -1141,33 +1141,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../legacy-burndown-matrix/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Legacy Burndown Matrix
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2308,7 +2281,7 @@ it does not carry forward old decorators or runner APIs.</p>
 <li>Do not keep old decorators or runner APIs just to preserve import paths.</li>
 </ul>
 <p>If a real benchmark suite needs more than this helper, capture the specific pain
-in the burndown matrix before adding another abstraction.</p>
+as a concrete migration requirement before adding another abstraction.</p>
 <h2 id="optional-python-migration-helper">Optional Python Migration Helper<a class="headerlink" href="#optional-python-migration-helper" title="Permanent link">&para;</a></h2>
 <p>The new <code>conbench</code> Python SDK includes a narrow <code>conbench.migration</code> module for
 jobs that already build result dictionaries and need a small bridge to the Go
@@ -2516,7 +2489,7 @@ the same places users discover the packages today:</p>
 <li>Warn that <code>conbenchlegacy</code> exposes a <code>conbench</code> console script that conflicts
   conceptually with the new Go CLI; migration jobs should call the Go binary.</li>
 <li>Link release notes, GitHub Pages, package READMEs, and pull request
-  announcements to this guide and the burndown matrix.</li>
+  announcements to this guide and the parity roadmap.</li>
 <li>Do not remove old package distributions from package indexes unless there is a
   security or legal reason; users need time to pin and migrate.</li>
 </ul>

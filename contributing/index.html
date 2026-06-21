@@ -804,33 +804,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../migration/legacy-burndown-matrix/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Legacy Burndown Matrix
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1358,17 +1331,17 @@ coverage for the public migration pages, API and SDK page, SDK README, and root
 README, and Zensical navigation coverage. Every Markdown page under
 <code>docs/site/</code> should be reachable from <code>zensical.toml</code> unless the checker has an
 explicit reason to exclude it.</p>
-<p>Use kata for active planning and issue history. Durable product, migration, and
-operations decisions should be recorded in <code>docs/site/</code> so the public docs stay
-the source of truth.
+<p>Use the project issue tracker for active planning and work history. Durable
+product, migration, and operations decisions should be recorded in <code>docs/site/</code>
+so the public docs stay the source of truth.
 Tracked documentation content belongs under <code>docs/site/</code>; implementation plans,
-scratch notes, and historical planning material should stay in kata or local
-ignored state unless they have been turned into public product, migration, or
-operations documentation.</p>
+scratch notes, and historical planning material should stay in the issue tracker
+or local ignored state unless they have been turned into public product,
+migration, or operations documentation.</p>
 <p><code>.superpowers/</code> is local scratch state for companion mockups or temporary
 brainstorming artifacts. Do not commit it, and do not use it as a durable plan
-archive. Move decisions worth preserving into <code>docs/site/</code> or record active
-work in kata.</p>
+archive. Move decisions worth preserving into <code>docs/site/</code> or record active work
+in the issue tracker.</p>
 <p>Generated local artifacts such as <code>site/</code>, <code>bin/</code>, <code>var/</code>, <code>.cache/</code>,
 <code>web/node_modules</code>, Python cache directories, Python SDK build artifacts, built
 <code>web/dist</code> assets, and web test artifacts are ignored workspace state. They are
