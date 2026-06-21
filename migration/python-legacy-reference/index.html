@@ -1,0 +1,2598 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Language-independent continuous benchmarking with a Go API, Svelte dashboard, CLI-first writes, and generated SDKs.">
+      
+      
+        <meta name="author" content="Conbench maintainers">
+      
+      
+        <link rel="canonical" href="https://wesm.github.io/conbench-tmp/migration/python-legacy-reference/">
+      
+      
+        <link rel="prev" href="../python-app/">
+      
+      
+        <link rel="next" href="../legacy-parity-roadmap/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.45">
+    
+    
+      
+        <title>Legacy Python Reference - Conbench</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.fba56155.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#legacy-python-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Conbench" class="md-header__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Conbench
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Legacy Python Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Conbench" class="md-nav__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Conbench
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Get started
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Get started
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Quickstart
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CLI Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Concepts
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../submitting-results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Submitting Results
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ci-reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CI Reporting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Using Conbench
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Using Conbench
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsing-and-comparing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Browsing And Comparing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboard-screenshots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dashboard Screenshots
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Regression Analysis
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../alerting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Alerting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-and-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API And SDK
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-and-tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Authentication And Tokens
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Migration
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migrating From The Legacy Python Conbench App
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Python Reference
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Python Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What Changes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard-route-crosswalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dashboard Route Crosswalk
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Migration Checklist
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-names-and-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Package Names And Environments
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-result-api-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Result API Aliases
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-payload-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Result Payload Metadata
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-migration-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Recommended Migration Sequence
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchadapt" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchadapt</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchconnect</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-csv-history-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing CSV History Downloads
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-batch-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Batch Pages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-run-pages-and-run-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Run Pages And Run APIs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-low-level-object-catalogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Low-Level Object Catalogs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-conceptual-benchmark-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Conceptual Benchmark Pages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-user-admin-and-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing User Admin And Registration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchclients" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchclients</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-run-comparison-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Run Comparison Pages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compare-semantics-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Compare Semantics Change
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchalerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchalerts</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchrun-and-conbenchlegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchrun</code> And <code>conbenchlegacy</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-python-migration-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Optional Python Migration Helper
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-benchmark-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Google Benchmark Demo
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arrow-and-archery-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Arrow And Archery Coverage
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-by-package-outcome" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Package-By-Package Outcome
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pypi-and-release-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        PyPI And Release Communication
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cutover-expectations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Cutover Expectations
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legacy-parity-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Parity Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deprecation-notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Package Deprecation Notices
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legacy-burndown-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Burndown Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Operations
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prod-clone-compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Production-Clone Compatibility
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Storage Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contributing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What Changes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard-route-crosswalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dashboard Route Crosswalk
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Migration Checklist
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-names-and-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Package Names And Environments
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-result-api-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Result API Aliases
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-payload-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Result Payload Metadata
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-migration-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Recommended Migration Sequence
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchadapt" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchadapt</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchconnect</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-csv-history-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing CSV History Downloads
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-batch-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Batch Pages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-run-pages-and-run-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Run Pages And Run APIs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-low-level-object-catalogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Low-Level Object Catalogs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-conceptual-benchmark-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Conceptual Benchmark Pages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-user-admin-and-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing User Admin And Registration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchclients" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchclients</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-run-comparison-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing Run Comparison Pages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compare-semantics-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Compare Semantics Change
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchalerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchalerts</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replacing-benchrun-and-conbenchlegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replacing <code>benchrun</code> And <code>conbenchlegacy</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-python-migration-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Optional Python Migration Helper
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-benchmark-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Google Benchmark Demo
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arrow-and-archery-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Arrow And Archery Coverage
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-by-package-outcome" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Package-By-Package Outcome
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pypi-and-release-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        PyPI And Release Communication
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cutover-expectations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Cutover Expectations
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="../python-app/" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Migration
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="legacy-python-reference">Legacy Python Reference<a class="headerlink" href="#legacy-python-reference" title="Permanent link">&para;</a></h1>
+<p>This reference is the detailed catalog behind the
+<a href="../python-app/">Python app migration guide</a>. It is for teams that need to map a
+specific Flask route, Python package, or old workflow to its new Conbench path.</p>
+<p>The new system is not a source-compatible Python port. It is a cleaner Conbench
+with a Go server, Svelte dashboard, CLI-first writes, generated SDKs, and a
+documented migration path.</p>
+<p>Start with the <a href="../python-app/">migration guide</a> if you want the shortest path
+to cut over a benchmark job.</p>
+<h2 id="what-changes">What Changes<a class="headerlink" href="#what-changes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Old surface</th>
+<th>New surface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flask API and Jinja dashboard</td>
+<td>Go API and Svelte dashboard</td>
+</tr>
+<tr>
+<td>Password/session Python HTTP clients</td>
+<td>Generated SDKs for reads; API tokens for automation</td>
+</tr>
+<tr>
+<td><code>benchconnect submit</code> and direct POST helpers</td>
+<td><code>conbench results submit</code></td>
+</tr>
+<tr>
+<td><code>benchalerts</code> PR checks/comments</td>
+<td><code>conbench ci report</code> and CI step summaries</td>
+</tr>
+<tr>
+<td><code>/api/history/download/{id}/</code> CSV downloads</td>
+<td><code>conbench history export &lt;result-id&gt;</code></td>
+</tr>
+<tr>
+<td>Legacy run lifecycle helpers</td>
+<td>explicit <code>run_id</code>, <code>run_tags</code>, <code>batch_id</code>, and CI report selectors</td>
+</tr>
+<tr>
+<td>Old Sphinx/autodoc docs</td>
+<td>this Markdown/Zensical docs site</td>
+</tr>
+</tbody>
+</table>
+<p>The Postgres schema remains frozen during the rewrite so existing data can be
+read by the new server. API names, client package names, and workflow contracts
+are allowed to improve.</p>
+<p>For a shorter product-status view of what was replaced, intentionally retired,
+or left as future product work, read the <a href="../legacy-parity-roadmap/">legacy parity roadmap</a>.</p>
+<h2 id="dashboard-route-crosswalk">Dashboard Route Crosswalk<a class="headerlink" href="#dashboard-route-crosswalk" title="Permanent link">&para;</a></h2>
+<p>Some legacy Flask/Jinja workflows are replaced by dashboard pages. Others are
+API, CLI, or SDK workflows because the new product exposes the underlying job
+in a different place instead of preserving the old route shape.</p>
+<table>
+<thead>
+<tr>
+<th>Legacy route or workflow</th>
+<th>New path today</th>
+<th>Dashboard parity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code>, <code>/index/</code> recent run landing page</td>
+<td><code>/</code> recent-run dashboard, with run detail and CI diagnostics links</td>
+<td>Implemented</td>
+</tr>
+<tr>
+<td><code>/benchmark-results/{id}/</code>, <code>/benchmarks/{id}/</code></td>
+<td><code>/results/{id}</code> or <code>/benchmark-results/{id}</code></td>
+<td>Implemented, including raw metadata, history JSON export, and signed-in distribution-change/delete actions</td>
+</tr>
+<tr>
+<td><code>/benchmark-results/</code> result list</td>
+<td><code>/results</code>, <code>/api/benchmark-results?...</code>, generated SDK, and run/batch dashboards</td>
+<td>Implemented as a bounded, filterable result-list dashboard plus API/SDK access</td>
+</tr>
+<tr>
+<td><code>/c-benchmarks/*</code>, series browsing, and history discovery</td>
+<td><code>/series</code>, <code>/series?q=&lt;benchmark-name&gt;</code>, <code>/benchmarks/history/{id}</code>, and <code>/series/{fingerprint}</code></td>
+<td>Implemented as bounded series discovery, loaded benchmark-family drilldown, and per-series investigation; the old global BMRT slope-ranking page is retired</td>
+</tr>
+<tr>
+<td><code>/api/history/download/{id}/</code></td>
+<td><code>conbench history export &lt;result-id&gt;</code>; result pages link to history JSON</td>
+<td>CSV export is CLI-owned; dashboard exposes JSON history</td>
+</tr>
+<tr>
+<td><code>/compare/benchmark-results/{ids}/</code></td>
+<td><code>/compare?baseline=&lt;id&gt;&amp;contender=&lt;id&gt;</code></td>
+<td>Implemented with stricter same-fingerprint semantics</td>
+</tr>
+<tr>
+<td><code>/compare/runs/{ids}/</code></td>
+<td><code>/ci/report?run_ids=...&amp;baseline_run_ids=...</code></td>
+<td>Implemented replacement surface</td>
+</tr>
+<tr>
+<td><code>/runs/{id}/</code></td>
+<td><code>/runs/&lt;run_id&gt;</code></td>
+<td>Implemented as new dashboard surface, not a Flask-compatible alias</td>
+</tr>
+<tr>
+<td><code>/api/runs/{id}/</code></td>
+<td><code>/api/benchmark-results?run_id=...</code>; <code>conbench ci report --run-ids ...</code></td>
+<td>API/CLI first; legacy API route retired</td>
+</tr>
+<tr>
+<td><code>/batches/{id}/</code></td>
+<td><code>/batches/&lt;batch_id&gt;</code> and <code>/api/benchmark-results?batch_id=...</code></td>
+<td>Implemented as new dashboard surface, not a Flask-compatible alias</td>
+</tr>
+<tr>
+<td><code>/hardware/*</code>, <code>/api/hardware/*</code></td>
+<td>series hardware filter and embedded hardware metadata</td>
+<td>Retired as standalone catalog</td>
+</tr>
+<tr>
+<td><code>/users/*</code>, <code>/register/</code>, password login</td>
+<td>OIDC, <code>/account</code>, <code>/api/users/me</code>, <code>/api/tokens</code>, <code>conbench auth ...</code></td>
+<td>Password-era admin UI retired; self-service identity, tokens, and alert rules live on <code>/account</code></td>
+</tr>
+</tbody>
+</table>
+<p>If a row says API/CLI first, the replacement is supported for migration, but the
+new dashboard may expose the workflow through a more specific page instead of a
+Flask-compatible list or catalog. Route aliases are intentionally not
+compatibility contracts.</p>
+<h2 id="migration-checklist">Migration Checklist<a class="headerlink" href="#migration-checklist" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Identify where benchmark results are constructed.</li>
+<li>Ensure each result payload has the metadata needed by the new workflows.</li>
+<li>Write one JSON object per result file.</li>
+<li>Replace Python HTTP submission with <code>conbench results submit</code>.</li>
+<li>Replace client-side alerting or PR comments with <code>conbench ci report</code>.</li>
+<li>Move read automation to the generated Python SDK or direct API calls.</li>
+<li>Remove password-login client code and legacy Flask route assumptions.</li>
+<li>Remove old package imports once the JSON/CLI path is in place.</li>
+</ol>
+<h2 id="package-names-and-environments">Package Names And Environments<a class="headerlink" href="#package-names-and-environments" title="Permanent link">&para;</a></h2>
+<p>The new generated Python SDK is installed and imported as <code>conbench</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>conbench
+</span></code></pre></div>
+<p>From a source checkout:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>./sdk/python
+</span></code></pre></div>
+<p>Use a clean virtual environment for the new SDK. Do not install the retired
+Flask application package and the new generated SDK into the same environment;
+they both use the <code>conbench</code> import name for different purposes.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench.api.default</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_series</span>
+</span></code></pre></div>
+<p>There is no new <code>conbench_client</code> package. The old Flask application also used
+the <code>conbench</code> import name, so avoid mixed environments where the retired app
+package and the new SDK are installed together. In most benchmark CI jobs, the
+simplest migration is to avoid importing the SDK entirely: write payload JSON
+from Python and call the Go <code>conbench</code> CLI for submission and CI reporting.</p>
+<p>Use the generated SDK for read automation, scripts, and notebooks that need to
+query Conbench. Use the CLI for writes.</p>
+<h2 id="replacing-result-api-aliases">Replacing Result API Aliases<a class="headerlink" href="#replacing-result-api-aliases" title="Permanent link">&para;</a></h2>
+<p>Legacy <code>/api/benchmarks</code> routes were aliases for benchmark result collection and
+detail operations. The new system keeps one result API shape and does not carry
+the aliases forward:</p>
+<table>
+<thead>
+<tr>
+<th>Old route</th>
+<th>New path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/benchmarks/</code></td>
+<td><code>GET /api/benchmark-results</code></td>
+</tr>
+<tr>
+<td><code>POST /api/benchmarks/</code></td>
+<td><code>conbench results submit</code>, or direct <code>POST /api/results</code> only for clients that intentionally use the OpenAPI contract</td>
+</tr>
+<tr>
+<td><code>GET /api/benchmarks/{id}/</code></td>
+<td><code>GET /api/benchmark-results/{id}</code></td>
+</tr>
+<tr>
+<td><code>PUT /api/benchmarks/{id}/</code></td>
+<td>authenticated <code>PUT /api/benchmark-results/{id}</code> for <code>change_annotations</code> updates</td>
+</tr>
+<tr>
+<td><code>DELETE /api/benchmarks/{id}/</code></td>
+<td>authenticated <code>DELETE /api/benchmark-results/{id}</code></td>
+</tr>
+</tbody>
+</table>
+<p>Prefer the CLI for creating results so validation, glob handling, token
+resolution, and CI report integration stay consistent. Use the HTTP update and
+delete routes only for authenticated result management workflows.</p>
+<h2 id="result-payload-metadata">Result Payload Metadata<a class="headerlink" href="#result-payload-metadata" title="Permanent link">&para;</a></h2>
+<p>For CI and dashboard workflows, each payload should include:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example-benchmark&quot;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;suite-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}&quot;</span><span class="p">,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">&quot;run_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pull request&quot;</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">&quot;run_tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">&quot;suite&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cpp&quot;</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;github-actions&quot;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">&quot;benchmark_language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Python&quot;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span><span class="nt">&quot;github&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="nt">&quot;repository&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://github.com/org/project&quot;</span><span class="p">,</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="nt">&quot;commit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdef123&quot;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-17T12:00:00Z&quot;</span><span class="p">,</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">  </span><span class="nt">&quot;machine_info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ci-linux-x86-64&quot;</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">  </span><span class="nt">&quot;stats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ns&quot;</span><span class="p">,</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">101.0</span><span class="p">,</span><span class="w"> </span><span class="mf">99.5</span><span class="p">,</span><span class="w"> </span><span class="mf">100.2</span><span class="p">]</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The <code>github.commit</code> value must match the commit passed to
+<code>conbench ci report --commit</code>. This is the most common migration failure.</p>
+<h2 id="recommended-migration-sequence">Recommended Migration Sequence<a class="headerlink" href="#recommended-migration-sequence" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Keep your existing benchmark runner and result-construction code.</li>
+<li>Add or normalize <code>run_id</code>, <code>run_reason</code>, <code>run_tags</code>, <code>github.repository</code>,
+   <code>github.commit</code>, <code>timestamp</code>, and <code>machine_info</code>.</li>
+<li>Write one payload object per JSON file into a directory such as
+   <code>bench-results/</code>.</li>
+<li>Run <code>conbench results submit "bench-results/*.json"</code> with an API token.</li>
+<li>Add <code>conbench ci report</code> after submission for pull request diagnostics.</li>
+<li>Move any read-only Python automation to <code>from conbench import Client</code>.</li>
+<li>Delete password-login client code after the CI and read paths have moved.</li>
+</ol>
+<h2 id="replacing-benchadapt">Replacing <code>benchadapt</code><a class="headerlink" href="#replacing-benchadapt" title="Permanent link">&para;</a></h2>
+<p><code>benchadapt</code> package code is deleted from the maintained implementation. Keep
+the payload construction concept, not the import path:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">payload</span> <span class="o">=</span> <span class="n">benchmark_result</span><span class="o">.</span><span class="n">to_publishable_dict</span><span class="p">()</span>
+</span></code></pre></div>
+<p>If existing benchmark code still constructs a similar result object, add or
+normalize metadata and write the payload to a JSON file:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;run_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">run_id</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;run_reason&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;pull request&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;run_tags&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;suite&quot;</span><span class="p">:</span> <span class="s2">&quot;gbench&quot;</span><span class="p">}</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;github&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="s2">&quot;repository&quot;</span><span class="p">:</span> <span class="n">repository</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s2">&quot;commit&quot;</span><span class="p">:</span> <span class="n">commit</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Do not treat <code>benchadapt</code> as a long-term compatibility promise. Use the current
+<code>conbench.migration</code> helper for payload-file writing and CLI invocation. If
+real migrations show repeated pain around richer payload construction, any
+follow-up should still be narrow and evidence-driven, not a full port of all
+historical adapters.</p>
+<h2 id="replacing-benchconnect">Replacing <code>benchconnect</code><a class="headerlink" href="#replacing-benchconnect" title="Permanent link">&para;</a></h2>
+<p><code>benchconnect</code> and <code>benchclients</code> are deleted from the maintained
+implementation. Do not build new code around their imports or CLIs; use the
+supported <code>conbench</code> binary and generated SDK instead.</p>
+<p>Old surfaces:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>benchconnect submit benchmark-results.json
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>benchconnect.post(...)
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>benchconnect.put(...)
+</span></code></pre></div>
+<p>New create/submit shape:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>conbench<span class="w"> </span>results<span class="w"> </span>submit<span class="w"> </span><span class="s2">&quot;bench-results/*.json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<p>Set <code>CONBENCH_TOKEN</code> in the job environment for authenticated submissions. The
+CLI reads that token directly, so migration scripts do not need to put it on
+the command line.</p>
+<p>Important differences:</p>
+<ul>
+<li>the glob should be quoted so the CLI expands it consistently,</li>
+<li>each matched file must contain one result object,</li>
+<li>auth uses user-owned API tokens, not password-login sessions,</li>
+<li>run grouping is explicit through <code>run_id</code>, <code>run_tags</code>, and <code>batch_id</code>,</li>
+<li>submit output is line-oriented and reports each accepted or rejected file.</li>
+</ul>
+<p>Old <code>benchconnect post</code> workflows should become the same CLI submit path unless
+they intentionally need to call the OpenAPI <code>POST /api/results</code> endpoint
+directly. Old <code>benchconnect put</code> workflows should become authenticated
+<code>PUT /api/benchmark-results/{id}</code> calls and should only update
+<code>change_annotations</code>; they are not a general result rewrite path.</p>
+<p>There is no replacement for <code>benchconnect start run</code> or <code>benchconnect finish
+run</code>. Generate a stable <code>run_id</code>, optional <code>batch_id</code>, and shared <code>run_tags</code> at
+the start of the benchmark job, attach them to every result payload, and submit
+the files when the job finishes:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">run_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;gbench-</span><span class="si">{</span><span class="n">github_run_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">github_run_attempt</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">run_tags</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;suite&quot;</span><span class="p">:</span> <span class="s2">&quot;gbench&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;github-actions&quot;</span><span class="p">}</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">for</span> <span class="n">payload</span> <span class="ow">in</span> <span class="n">payloads</span><span class="p">:</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;run_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">run_id</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;batch_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">batch_id</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;run_tags&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">run_tags</span>
+</span></code></pre></div>
+<p>If your current code writes an array of results, split it:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">payload</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">payloads</span><span class="p">):</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="n">path</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;result-</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.json&quot;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="replacing-csv-history-downloads">Replacing CSV History Downloads<a class="headerlink" href="#replacing-csv-history-downloads" title="Permanent link">&para;</a></h2>
+<p>Old shape:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>curl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_URL</span><span class="s2">/api/history/download/</span><span class="nv">$RESULT_ID</span><span class="s2">/&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>history.csv
+</span></code></pre></div>
+<p>New shape:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>conbench<span class="w"> </span><span class="nb">history</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RESULT_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--output<span class="w"> </span>history.csv
+</span></code></pre></div>
+<p>For Python automation that wants structured data instead of a CSV file, use the
+generated SDK or the JSON history API directly. The CSV command exists for file
+export and notebook handoff workflows; it is not a compatibility alias for the
+old Flask route.</p>
+<h2 id="replacing-batch-pages">Replacing Batch Pages<a class="headerlink" href="#replacing-batch-pages" title="Permanent link">&para;</a></h2>
+<p>Old shape:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>/batches/&lt;batch_id&gt;/
+</span></code></pre></div>
+<p>New shape:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>/batches/&lt;batch_id&gt;
+</span></code></pre></div>
+<p>For automation, use the result-list API:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>curl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">/api/benchmark-results?batch_id=</span><span class="nv">$BATCH_ID</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<p>Or with the generated Python SDK:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench.api.default</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_benchmark_results</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">server_url</span><span class="p">)</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">page</span> <span class="o">=</span> <span class="n">list_benchmark_results</span><span class="o">.</span><span class="n">sync</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> <span class="n">batch_id</span><span class="o">=</span><span class="n">batch_id</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The new system treats <code>batch_id</code> as submitted metadata. The Svelte dashboard
+page at <code>/batches/&lt;batch_id&gt;</code> uses the result-list API underneath, groups loaded
+rows by <code>run_id</code>, and links to run detail, CI reports, result detail, and series
+trends. It is not a Flask/Jinja page or API compatibility alias.</p>
+<h2 id="replacing-run-pages-and-run-apis">Replacing Run Pages And Run APIs<a class="headerlink" href="#replacing-run-pages-and-run-apis" title="Permanent link">&para;</a></h2>
+<p>Old shapes:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>/api/runs/?commit_hash=&lt;sha&gt;
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>/api/runs/&lt;run_id&gt;/
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>/runs/&lt;run_id&gt;/
+</span></code></pre></div>
+<p>New result-list shape:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>curl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">/api/benchmark-results?run_id=</span><span class="nv">$RUN_ID</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<p>Or with the generated Python SDK:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench.api.default</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_benchmark_results</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">server_url</span><span class="p">)</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="n">page</span> <span class="o">=</span> <span class="n">list_benchmark_results</span><span class="o">.</span><span class="n">sync</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> <span class="n">run_id</span><span class="o">=</span><span class="n">run_id</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The old run detail endpoint returned a representative result plus run metadata
+and candidate baseline suggestions. The new system keeps <code>run_id</code>, <code>run_tags</code>,
+<code>run_reason</code>, commit metadata, machine metadata, timestamps, and result status
+on the result rows themselves, then uses CI reports for baseline diagnostics.</p>
+<p>The new dashboard home page is powered by a recent-run summary endpoint:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>curl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">/api/runs/recent?page_size=25&quot;</span>
+</span></code></pre></div>
+<p>Use it for landing-page activity summaries. For human investigation, open the
+new dashboard run detail page:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>/runs/&lt;run_id&gt;
+</span></code></pre></div>
+<p>The dashboard page uses the result-list API underneath and adds links to CI
+reports, result details, and series trends. It is not a replacement for the old
+<code>/api/runs/&lt;run_id&gt;/</code> JSON shape; API migrations should use the result-list
+filter and CI report selectors below.</p>
+<p>For a known run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>conbench<span class="w"> </span>ci<span class="w"> </span>report<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>--run-ids<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUN_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span>--format<span class="w"> </span>markdown
+</span></code></pre></div>
+<p>For a commit-wide replacement of <code>/api/runs/?commit_hash=...</code>, ask the CI report
+selector to find the commit's runs:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>conbench<span class="w"> </span>ci<span class="w"> </span>report<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span>--repository<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPOSITORY</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">  </span>--commit<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$COMMIT_SHA</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">  </span>--format<span class="w"> </span>markdown
+</span></code></pre></div>
+<p>The old <code>/api/runs</code> route shapes are retired rather than kept as aliases. If a
+migration needs a concise run summary, build it from
+<code>/api/benchmark-results?run_id=...</code>; if it needs baseline selection, use
+<code>/api/ci/report</code> or <code>conbench ci report</code>.</p>
+<h2 id="replacing-low-level-object-catalogs">Replacing Low-Level Object Catalogs<a class="headerlink" href="#replacing-low-level-object-catalogs" title="Permanent link">&para;</a></h2>
+<p>Old shapes:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>/api/commits/
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>/api/contexts/
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>/api/hardware/
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>/api/info/
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>/hardware/
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>/hardware/&lt;hardware-id&gt;/
+</span></code></pre></div>
+<p>The new system does not keep standalone catalog endpoints for these internal
+rows. Query the product endpoint that owns the workflow:</p>
+<ul>
+<li>result detail for raw commit, context, info, optional info, validation,
+  annotations, hardware metadata, and authenticated result actions,</li>
+<li>result list, run dashboards, and batch dashboards for run, batch, run reason,
+  and time-scoped result inspection,</li>
+<li>series browse or trend pages for hardware/repository/fingerprint navigation,</li>
+<li>CI reports for commit and hardware metadata in regression diagnostics.</li>
+</ul>
+<p>For example, to replace a hardware page workflow, search or filter series by
+hardware name in the dashboard or API:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>curl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">/api/series?hardware=</span><span class="nv">$HARDWARE_NAME</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<p>These route shapes are retired, not aliased. If a deployment needs an operator
+debug catalog, add it as a new authenticated operator feature with its own
+authorization and scale requirements.</p>
+<h2 id="replacing-conceptual-benchmark-pages">Replacing Conceptual Benchmark Pages<a class="headerlink" href="#replacing-conceptual-benchmark-pages" title="Permanent link">&para;</a></h2>
+<p>Old shapes:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>/c-benchmarks/
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>/c-benchmarks/&lt;benchmark-name&gt;
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>/c-benchmarks/&lt;benchmark-name&gt;/trends
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>/c-benchmarks/&lt;benchmark-name&gt;/&lt;case-id&gt;
+</span></code></pre></div>
+<p>These Flask/Jinja pages were backed by the old BMRT cache. They grouped a
+benchmark family by case, hardware, and context; showed case-parameter value
+counts; hid stale case keys; and highlighted increasing and decreasing trend
+candidates across many series.</p>
+<p>The new supported path is:</p>
+<ul>
+<li>use <code>/series</code> to find a benchmark family or narrow by repository, hardware,
+  active window, or fingerprint,</li>
+<li>use <code>/series?q=&lt;benchmark-name&gt;</code> for the loaded benchmark-family drilldown:
+  case variants, hardware/context coverage, history-point counts, and
+  regressed/improved triage links over the loaded rows,</li>
+<li>use <code>/series/&lt;fingerprint&gt;</code> or <code>/benchmarks/history/&lt;result-id&gt;</code> for one
+  concrete series trend,</li>
+<li>use run, batch, CI report, and result-detail pages to move from a submitted
+  run to the relevant series.</li>
+</ul>
+<p>The old global increasing/decreasing trend page is retired. It ranked slopes
+from the BMRT cache across a whole benchmark family, which is the wrong shape
+for a 100M-row result table. Use the loaded family triage, CI reports, and
+per-series outlier/step shortcuts instead. A future server-side family
+analytics endpoint can be proposed with explicit scale requirements, but it
+should not resurrect the old cache model.</p>
+<h2 id="replacing-user-admin-and-registration">Replacing User Admin And Registration<a class="headerlink" href="#replacing-user-admin-and-registration" title="Permanent link">&para;</a></h2>
+<p>Old shapes:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>/api/users/
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>/api/users/&lt;user-id&gt;/
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>/api/register/
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>/users/
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>/users/create/
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>/users/&lt;user-id&gt;/
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>/register/
+</span></code></pre></div>
+<p>The new system uses OIDC for human identity and user-owned API tokens for
+automation. It supports the <code>/account</code> dashboard, <code>/api/users/me</code>,
+<code>/api/auth/*</code>, <code>/api/tokens</code>, and the CLI commands:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>conbench<span class="w"> </span>auth<span class="w"> </span>login<span class="w"> </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>conbench<span class="w"> </span>auth<span class="w"> </span>token<span class="w"> </span>list<span class="w"> </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>conbench<span class="w"> </span>auth<span class="w"> </span>token<span class="w"> </span>revoke<span class="w"> </span>&lt;token-id&gt;<span class="w"> </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<p>The <code>/account</code> page is a self-service surface for the current authenticated
+user: it shows OIDC identity, supports browser logout, creates and revokes
+user-owned API tokens, and manages user-owned alert rules. Password login,
+registration keys, arbitrary user create/update/delete APIs, and Flask/Jinja
+user admin pages are retired for cutover. If operator user administration is
+needed later, build it as a new authenticated admin feature rather than
+carrying forward the old password-era CRUD routes.</p>
+<h2 id="replacing-benchclients">Replacing <code>benchclients</code><a class="headerlink" href="#replacing-benchclients" title="Permanent link">&para;</a></h2>
+<p><code>benchclients.ConbenchClient</code> is retired, and the <code>benchclients/</code> package code
+has been deleted from the maintained implementation. Use:</p>
+<ul>
+<li>the <code>conbench</code> CLI for writes and CI reports,</li>
+<li>the generated Python SDK package <code>conbench</code> for reads and automation,</li>
+<li>direct OpenAPI calls only when a generated SDK is not appropriate.</li>
+</ul>
+<p>Example read automation:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench.api.default</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_benchmark_result</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://conbench.example.com&quot;</span><span class="p">)</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="n">result</span> <span class="o">=</span> <span class="n">get_benchmark_result</span><span class="o">.</span><span class="n">sync</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">result_id</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Do not port password-login, cookie-session, or legacy pagination helpers.
+If existing code uses <code>ConbenchClient.get_all(...)</code>, replace it with the
+generated SDK operation for the endpoint you actually need and follow the
+operation's <code>next_page_cursor</code> when the response type exposes one.</p>
+<h2 id="replacing-run-comparison-pages">Replacing Run Comparison Pages<a class="headerlink" href="#replacing-run-comparison-pages" title="Permanent link">&para;</a></h2>
+<p>Old shape:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>/compare/runs/&lt;baseline-run-id&gt;...&lt;contender-run-id&gt;/
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>/api/compare/runs/&lt;baseline-run-id&gt;...&lt;contender-run-id&gt;/
+</span></code></pre></div>
+<p>New shape:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>conbench<span class="w"> </span>ci<span class="w"> </span>report<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">  </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">  </span>--run-ids<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONTENDER_RUN_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">  </span>--baseline-run-ids<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BASELINE_RUN_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">  </span>--format<span class="w"> </span>markdown
+</span></code></pre></div>
+<p>For multiple run pairs, pass comma-separated lists with matching order. The
+report URL also accepts <code>run_ids</code> and <code>baseline_run_ids</code>, so the same comparison
+can be opened in the Svelte dashboard. The new system intentionally uses the CI
+report surface instead of preserving the old Flask route shape.</p>
+<h2 id="compare-semantics-change">Compare Semantics Change<a class="headerlink" href="#compare-semantics-change" title="Permanent link">&para;</a></h2>
+<p>Legacy Conbench allowed some ad hoc same-unit result comparisons even when the
+results came from different benchmark cases, contexts, or repositories. The new
+single-result compare is intentionally stricter: it expects baseline and
+contender results from the same history fingerprint so pairwise output and
+lookback z-score context describe the same benchmark series.</p>
+<p>Use CI reports for run-to-run and commit-wide comparisons. If a migration needs
+cross-fingerprint exploratory comparison, treat that as a new product feature
+with explicit UX and statistics semantics rather than relying on the old loose
+route behavior.</p>
+<h2 id="replacing-benchalerts">Replacing <code>benchalerts</code><a class="headerlink" href="#replacing-benchalerts" title="Permanent link">&para;</a></h2>
+<p>For synchronous pull request checks, use <code>conbench ci report</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">set</span><span class="w"> </span>+e
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>conbench<span class="w"> </span>ci<span class="w"> </span>report<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">  </span>--repository<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">GITHUB_SERVER_URL</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">GITHUB_REPOSITORY</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">  </span>--commit<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$GITHUB_SHA</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">  </span>--run-ids<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUN_IDS</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="w">  </span>--format<span class="w"> </span>markdown<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="w">  </span>--output<span class="w"> </span>conbench-report.md
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="nv">status</span><span class="o">=</span><span class="nv">$?</span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="nb">set</span><span class="w"> </span>-e
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>
+</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>cat<span class="w"> </span>conbench-report.md<span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$GITHUB_STEP_SUMMARY</span><span class="s2">&quot;</span>
+</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a><span class="nb">exit</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$status</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<p>This replaces <code>benchalerts</code> for synchronous PR diagnostics: the CI job owns the
+GitHub status, and the Markdown report can be appended to the job summary or
+posted by repository-local automation.</p>
+<p>Scheduled alert state moves into the server. Create alert rules through the
+<code>/account</code> dashboard or authenticated alert-rule API, then run
+<code>conbench admin alerts evaluate</code> from operations automation. The evaluator
+records open/resolve events using the CI report comparison engine.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>conbench<span class="w"> </span>admin<span class="w"> </span>alerts<span class="w"> </span>evaluate<span class="w"> </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>For scheduled notifications, run <code>conbench admin alerts deliver</code> with
+<code>CONBENCH_ALERT_WEBHOOK_URL</code> or <code>--webhook-url</code> for a generic webhook. For
+Slack, use <code>--channel slack</code> with <code>CONBENCH_ALERT_SLACK_WEBHOOK_URL</code> or
+<code>--slack-webhook-url</code>. For repository-scoped scheduled GitHub Checks, use
+<code>--channel github-check</code> with <code>CONBENCH_ALERT_GITHUB_REPOSITORY</code> and a token
+that can create Check Runs. For repository-scoped GitHub commit comments, use
+<code>--channel github-comment</code> with the same repository and token configuration. For
+email delivery, use <code>--channel email</code> with
+<code>CONBENCH_ALERT_EMAIL_SMTP_ADDR</code>, <code>CONBENCH_ALERT_EMAIL_FROM</code>, and
+<code>CONBENCH_ALERT_EMAIL_TO</code>. All paths deliver stored alert events through an
+idempotent, auditable server-owned outbox rather than through a maintained
+<code>benchalerts</code> Python client package.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>conbench<span class="w"> </span>admin<span class="w"> </span>alerts<span class="w"> </span>deliver<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">  </span>--webhook-url<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_ALERT_WEBHOOK_URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">  </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>See <a href="../../alerting/">Alerting</a> for channel-specific configuration and the
+current non-goals.</p>
+<h2 id="replacing-benchrun-and-conbenchlegacy">Replacing <code>benchrun</code> And <code>conbenchlegacy</code><a class="headerlink" href="#replacing-benchrun-and-conbenchlegacy" title="Permanent link">&para;</a></h2>
+<p><code>benchrun</code> package code is deleted from the maintained implementation.
+<code>conbenchlegacy</code> package code is deleted from the maintained implementation.
+Benchmark orchestration belongs in benchmark projects. The new
+<code>conbench.migration</code> helper only covers payload-file writing and CLI submission;
+it does not carry forward old decorators or runner APIs.</p>
+<ul>
+<li>Keep benchmark execution code that is still useful.</li>
+<li>Emit Conbench JSON payloads at the boundary.</li>
+<li>Submit with the Go CLI.</li>
+<li>Do not keep old decorators or runner APIs just to preserve import paths.</li>
+</ul>
+<p>If a real benchmark suite needs more than this helper, capture the specific pain
+in the burndown matrix before adding another abstraction.</p>
+<h2 id="optional-python-migration-helper">Optional Python Migration Helper<a class="headerlink" href="#optional-python-migration-helper" title="Permanent link">&para;</a></h2>
+<p>The new <code>conbench</code> Python SDK includes a narrow <code>conbench.migration</code> module for
+jobs that already build result dictionaries and need a small bridge to the Go
+CLI:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench.migration</span><span class="w"> </span><span class="kn">import</span> <span class="n">submit_results</span><span class="p">,</span> <span class="n">write_result_payloads</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="n">write_result_payloads</span><span class="p">(</span><span class="n">payloads</span><span class="p">,</span> <span class="s2">&quot;bench-results&quot;</span><span class="p">)</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="n">submit_results</span><span class="p">(</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>    <span class="p">[</span><span class="s2">&quot;bench-results/*.json&quot;</span><span class="p">],</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>    <span class="n">server</span><span class="o">=</span><span class="s2">&quot;https://conbench.example.com&quot;</span><span class="p">,</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>    <span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">,</span>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>The helper writes one JSON object per file, passes quoted glob strings through
+to the Go CLI, and redacts tokens from helper-returned command results and
+errors. Before writing, it removes older helper-owned files with the same
+prefix, such as <code>result-000003.json</code>, so a submit glob does not pick up stale
+payloads from a previous run. It is not a source-compatible <code>benchadapt</code>,
+<code>benchconnect</code>, or <code>benchclients</code> shim; benchmark projects should still own
+their benchmark execution and payload construction.</p>
+<h2 id="google-benchmark-demo">Google Benchmark Demo<a class="headerlink" href="#google-benchmark-demo" title="Permanent link">&para;</a></h2>
+<p>The repository includes a fixture-backed migration demo,
+<a href="https://github.com/conbench/conbench/blob/main/examples/migration/gbench_to_cli_submit.py"><code>examples/migration/gbench_to_cli_submit.py</code></a>,
+that transforms saved Google Benchmark JSON without compiling Google Benchmark:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>make<span class="w"> </span>migration-examples-test
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="nv">PYTHONPATH</span><span class="o">=</span>sdk/python<span class="w"> </span>python3<span class="w"> </span>examples/migration/gbench_to_cli_submit.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">  </span>--out-dir<span class="w"> </span>/tmp/conbench-gbench-payloads<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">  </span>--repository<span class="w"> </span>https://github.com/example/project<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">  </span>--commit<span class="w"> </span>abc123<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">  </span>--run-id<span class="w"> </span>demo-run
+</span></code></pre></div>
+<p>To keep this proof honest, the repository check runs the example tests with the
+repository root and <code>sdk/python</code> on <code>PYTHONPATH</code>. The repository root is present
+only so tests can import repository guard helpers; the demo itself must not
+depend on installed legacy packages or developer-shell state.</p>
+<p>The dry run prints the files it wrote and the exact submit command shape. It
+does not include the API token on argv:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="p">{</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">  </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="s2">&quot;/tmp/conbench-gbench-payloads/result-000001.json&quot;</span><span class="p">,</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="w">    </span><span class="s2">&quot;/tmp/conbench-gbench-payloads/result-000002.json&quot;</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w">  </span><span class="nt">&quot;result_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w">  </span><span class="nt">&quot;run_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w">    </span><span class="s2">&quot;demo-run&quot;</span>
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="w">  </span><span class="nt">&quot;submit_command&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="w">    </span><span class="s2">&quot;conbench&quot;</span><span class="p">,</span>
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a><span class="w">    </span><span class="s2">&quot;results&quot;</span><span class="p">,</span>
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a><span class="w">    </span><span class="s2">&quot;submit&quot;</span><span class="p">,</span>
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a><span class="w">    </span><span class="s2">&quot;/tmp/conbench-gbench-payloads/*.json&quot;</span><span class="p">,</span>
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a><span class="w">    </span><span class="s2">&quot;--server&quot;</span><span class="p">,</span>
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a><span class="w">    </span><span class="s2">&quot;$CONBENCH_SERVER_URL&quot;</span>
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a><span class="w">  </span><span class="nt">&quot;submit_env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a><span class="w">    </span><span class="nt">&quot;CONBENCH_TOKEN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;redacted&gt;&quot;</span>
+</span><span id="__span-36-20"><a id="__codelineno-36-20" name="__codelineno-36-20" href="#__codelineno-36-20"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-36-21"><a id="__codelineno-36-21" name="__codelineno-36-21" href="#__codelineno-36-21"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The test target is part of the CI path and proves that the demo still writes
+object-per-file payloads without leaking tokens. The converter preserves the
+Google Benchmark <code>context.date</code> timestamp when it is present, which keeps
+historical imports and dry-run output reproducible. It uses the supported
+<code>conbench.migration</code> helper for payload-file writing and CLI result submission,
+so the runnable example follows the same Python boundary recommended above. Its
+dry-run summary shows the submit command without a <code>--token</code> argument and lists
+<code>CONBENCH_TOKEN</code> as redacted environment input, matching the helper's
+process-listing-safe token path. The optional <code>--ci-report</code> step follows the
+same rule: it runs <code>conbench ci report</code> with <code>CONBENCH_TOKEN</code> in the child
+environment rather than on argv.
+Submit with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_SERVER_URL</span><span class="o">=</span>https://conbench.example.com
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_TOKEN</span><span class="o">=</span>&lt;token&gt;
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="nv">PYTHONPATH</span><span class="o">=</span>sdk/python<span class="w"> </span>python3<span class="w"> </span>examples/migration/gbench_to_cli_submit.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">  </span>--out-dir<span class="w"> </span>/tmp/conbench-gbench-payloads<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">  </span>--repository<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">GITHUB_SERVER_URL</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">GITHUB_REPOSITORY</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">  </span>--commit<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$GITHUB_SHA</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">  </span>--run-id<span class="w"> </span><span class="s2">&quot;gbench-</span><span class="si">${</span><span class="nv">GITHUB_RUN_ID</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">GITHUB_RUN_ATTEMPT</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="w">  </span>--submit<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="w">  </span>--ci-report
+</span></code></pre></div>
+<p>The demo redacts tokens, preserves fixture timestamps, and writes one result
+object per file.</p>
+<h2 id="arrow-and-archery-coverage">Arrow And Archery Coverage<a class="headerlink" href="#arrow-and-archery-coverage" title="Permanent link">&para;</a></h2>
+<p>The Google Benchmark fixture demo is the current executable migration proof
+because it exercises the result-construction, metadata-normalization, file
+writing, timestamp preservation, CLI submission, and CI-report path without a
+heavyweight C++ build.</p>
+<p>Arrow/archery remains the representativeness anchor for real Conbench usage. A
+richer Arrow/archery example is not required for the first migration path.
+Arrow/archery migration does not block initial cutover: the generic JSON/CLI
+path is sufficient while the first deployments migrate, and a new
+self-contained recipe should be added only if real Arrow migration work shows
+archery-specific metadata or adapter behavior that the fixture demo does not
+cover.</p>
+<p>Legacy adapter status:</p>
+<table>
+<thead>
+<tr>
+<th>Legacy adapter</th>
+<th>Current migration path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Benchmark / <code>gbench</code></td>
+<td>Covered by the fixture-backed migration demo.</td>
+</tr>
+<tr>
+<td>Archery / Arrow</td>
+<td>Representativeness anchor; add a self-contained recipe only when real migration work shows archery-specific metadata gaps.</td>
+</tr>
+<tr>
+<td>Folly</td>
+<td>Not source-compatible; emit Conbench payload dictionaries with explicit run, GitHub, timestamp, machine, tags, context, and stats fields.</td>
+</tr>
+<tr>
+<td>ASV</td>
+<td>Not source-compatible; translate ASV output into one Conbench result object per file before CLI submission.</td>
+</tr>
+<tr>
+<td>Callable adapter</td>
+<td>Retired with <code>benchrun</code>; keep useful benchmark execution code in the benchmark project and emit Conbench JSON at the boundary.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="package-by-package-outcome">Package-By-Package Outcome<a class="headerlink" href="#package-by-package-outcome" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Outcome</th>
+<th>What to do now</th>
+<th>What not to carry forward</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>benchadapt</code></td>
+<td>Deleted from the maintained implementation; replace</td>
+<td>Preserve the payload-construction concept if useful; normalize metadata; submit with CLI</td>
+<td>A full source-compatible adapter package</td>
+</tr>
+<tr>
+<td><code>benchconnect</code></td>
+<td>Deleted from the maintained implementation; replace</td>
+<td>Use <code>conbench results submit</code> and <code>conbench ci report</code></td>
+<td>Password/session posting and implicit run lifecycle</td>
+</tr>
+<tr>
+<td><code>benchclients</code></td>
+<td>Deleted from the maintained implementation; replace</td>
+<td>Use generated <code>conbench</code> SDK reads and CLI writes</td>
+<td><code>ConbenchClient</code>, password login, cookie sessions, legacy pagination helpers</td>
+</tr>
+<tr>
+<td><code>benchrun</code></td>
+<td>Deleted from the maintained implementation; retire</td>
+<td>Keep useful benchmark execution code in the benchmark project; emit Conbench JSON at the boundary</td>
+<td>Old decorators or runner APIs solely to preserve imports</td>
+</tr>
+<tr>
+<td><code>benchalerts</code></td>
+<td>Deleted from the maintained implementation; replace PR checks and scheduled alert state with server-owned surfaces</td>
+<td>Use CI reports for PRs; use <code>/account</code> or the alert-rule API plus <code>conbench admin alerts evaluate</code>; use <code>conbench admin alerts deliver</code> for generic webhook, Slack, GitHub Check, GitHub commit-comment, or email notifications</td>
+<td>Client-side GitHub Checks, comments, Slack routing, or email routing as a maintained package</td>
+</tr>
+<tr>
+<td><code>conbenchlegacy</code></td>
+<td>Deleted from the maintained implementation; retire</td>
+<td>Migrate benchmark output to JSON payloads plus CLI</td>
+<td>Legacy runner/import compatibility</td>
+</tr>
+<tr>
+<td>Flask <code>conbench</code> app</td>
+<td>Deleted from the maintained implementation; replace</td>
+<td>Deploy Go server and Svelte app</td>
+<td>Flask route, Jinja, password-login, and SQLAlchemy app contracts</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pypi-and-release-communication">PyPI And Release Communication<a class="headerlink" href="#pypi-and-release-communication" title="Permanent link">&para;</a></h2>
+<p>Before cutover, publish or otherwise communicate the legacy package status in
+the same places users discover the packages today:</p>
+<ul>
+<li>Use the <a href="../deprecation-notices/">legacy package deprecation notices</a> as
+  copy-paste source text for package READMEs, PyPI project descriptions,
+  release notes, GitHub issues, and migration pull requests.</li>
+<li>Update package READMEs and PyPI long descriptions with the migration notice.</li>
+<li>Publish final deprecation notices for <code>benchconnect</code>, <code>benchclients</code>,
+  <code>benchalerts</code>, and <code>conbenchlegacy</code> where those packages are still
+  discovered, such as PyPI project pages or old docs.</li>
+<li>In the <code>benchalerts</code> deprecation notice, point synchronous PR checks to
+  <code>conbench ci report</code>, scheduled alert state to server alert rules, generic
+  webhook, Slack, GitHub Check, GitHub commit-comment, and email delivery to
+  <code>conbench admin alerts deliver</code>; do not promise a maintained Python alerting
+  client or package-level delivery shim.</li>
+<li>Point old <code>benchadapt</code> users at the self-contained migration examples and at
+  <code>conbench.migration</code>; do not promise import compatibility.</li>
+<li>Make the generated SDK package <code>conbench</code> the supported Python read client.</li>
+<li>Warn that the old Flask app package and the new SDK both use the <code>conbench</code>
+  import name and should not share an environment.</li>
+<li>Warn that <code>conbenchlegacy</code> exposes a <code>conbench</code> console script that conflicts
+  conceptually with the new Go CLI; migration jobs should call the Go binary.</li>
+<li>Link release notes, GitHub Pages, package READMEs, and pull request
+  announcements to this guide and the burndown matrix.</li>
+<li>Do not remove old package distributions from package indexes unless there is a
+  security or legal reason; users need time to pin and migrate.</li>
+</ul>
+<p>Any compatibility shim, import alias, or replacement helper beyond the generated
+SDK, <code>conbench.migration</code>, and Go CLI needs explicit approval before
+implementation.</p>
+<h2 id="cutover-expectations">Cutover Expectations<a class="headerlink" href="#cutover-expectations" title="Permanent link">&para;</a></h2>
+<p>During migration, users may still have old packages in their own benchmark
+environments. Those packages are no longer maintained source surfaces. At
+cutover, users should expect:</p>
+<ul>
+<li>no maintained Flask application,</li>
+<li>no maintained password-login Python HTTP client,</li>
+<li>no source-compatible <code>benchconnect</code> or <code>benchalerts</code> replacement,</li>
+<li>new documentation, CLI, OpenAPI, and SDKs as the supported path.</li>
+</ul>
+<p>The goal is a smaller, clearer Conbench that existing deployments can migrate
+to without carrying old design constraints forever.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["navigation.instant","navigation.instant.progress","navigation.path","navigation.sections"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1593 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Language-independent continuous benchmarking with a Go API, Svelte dashboard, CLI-first writes, and generated SDKs.">
+      
+      
+        <meta name="author" content="Conbench maintainers">
+      
+      
+        <link rel="canonical" href="https://wesm.github.io/conbench-tmp/storage-roadmap/">
+      
+      
+        <link rel="prev" href="../prod-clone-compatibility/">
+      
+      
+        <link rel="next" href="../contributing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.45">
+    
+    
+      
+        <title>Storage Roadmap - Conbench</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.fba56155.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#storage-roadmap" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="Conbench" class="md-header__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Conbench
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Storage Roadmap
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Conbench" class="md-nav__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Conbench
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Get started
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Get started
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Quickstart
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CLI Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Concepts
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../submitting-results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Submitting Results
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CI Reporting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Using Conbench
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Using Conbench
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browsing-and-comparing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Browsing And Comparing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboard-screenshots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dashboard Screenshots
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regression-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Regression Analysis
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Alerting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-and-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API And SDK
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-and-tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Authentication And Tokens
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Migration
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/python-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migrating From The Legacy Python Conbench App
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/python-legacy-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Python Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/legacy-parity-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Parity Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/deprecation-notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Package Deprecation Notices
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/legacy-burndown-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Burndown Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Operations
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prod-clone-compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Production-Clone Compatibility
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Storage Roadmap
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Storage Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#current-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Current Evidence
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Decision
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Target Shape
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Migration Path
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        First Proof
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-families-to-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Query Families To Benchmark
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proof-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Proof Gates
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Service Boundary
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-before-a-primary-fact-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Questions Before A Primary Fact Store
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contributing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#current-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Current Evidence
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Decision
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Target Shape
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Migration Path
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        First Proof
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-families-to-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Query Families To Benchmark
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proof-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Proof Gates
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Service Boundary
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-before-a-primary-fact-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Questions Before A Primary Fact Store
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="./.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="../operations/" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Operations
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="storage-roadmap">Storage Roadmap<a class="headerlink" href="#storage-roadmap" title="Permanent link">&para;</a></h1>
+<p>The current new Conbench server runs on the frozen legacy Postgres schema. That
+keeps migration risk low: existing deployments can restore their current
+database and validate the Go/Svelte implementation against real data before any
+storage-model change.</p>
+<p>The frozen schema is not the long-term end state. Production-derived testing
+has already shown that the largest deployments are in the 100M-result-row class,
+with almost all data volume concentrated in the append-heavy
+<code>benchmark_result</code> table. That table behaves like an analytical fact table, not
+like small mutable application metadata.</p>
+<h2 id="current-evidence">Current Evidence<a class="headerlink" href="#current-evidence" title="Permanent link">&para;</a></h2>
+<p>Sanitized production-clone findings are recorded in
+<a href="../prod-clone-compatibility/">Production-Clone Compatibility</a>. The important
+shape is:</p>
+<ul>
+<li><code>benchmark_result</code> dominates storage size and row count,</li>
+<li>small dimension tables such as commit, case, hardware, context, and info are
+  tiny by comparison,</li>
+<li>targeted result, history, compare, and CI report paths are viable when they
+  avoid broad fact-table browsing,</li>
+<li>broad series discovery and default browse paths are the visible cost center,</li>
+<li>row caps and narrower queries are useful UI guards, but they do not eliminate
+  the need for a future fact-model decision.</li>
+</ul>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>Use a staged combination, not a single large storage rewrite.</p>
+<ol>
+<li>Keep the frozen legacy Postgres schema as the write source of truth through
+   migration and initial cutover. This lets existing deployments restore their
+   current database and run the new Go/Svelte application without rewriting
+   benchmark payloads or migrating historical IDs.</li>
+<li>Keep using bounded SQL and targeted indexes for product paths that must work
+   against existing deployments today. The Phase 5c browse/search hardening is
+   the model: constrain visible rows, avoid broad fact-table enrichment, and
+   keep targeted result, history, compare, and CI report reads fast.</li>
+<li>Do not rebuild the legacy Flask/BMRT cache model as the long-term answer.
+   Also do not start by adding broad materialized cache tables for every
+   dashboard view. Those approaches improve individual screens but keep the
+   100M-row analytical fact table inside the transactional database.</li>
+<li>Prove a read-only columnar analytical replica before any primary fact-store
+   switch. The first candidate is DuckDB reading Parquet, with DuckLake as the
+   catalog layer to test after plain Parquet establishes a lower-bound baseline.</li>
+<li>Move only read-heavy service interfaces to the analytical replica after
+   measured correctness, latency, and operations gates pass. Writes remain
+   Postgres-backed until result identity, atomic metadata/fact linkage,
+   recovery, deletes, and rollback are designed and tested.</li>
+<li>Keep the public API, CLI, Python SDK, and JSON payload contract stable while
+   the storage backend changes behind service interfaces.</li>
+</ol>
+<p>This decision makes the next storage work a proof, not a production cutover.
+Smart SQL remains the compatibility path. DuckLake/Parquet is the first
+scale-out read experiment. A Postgres fact-model rewrite is deferred until the
+columnar proof shows whether changing the primary database is still necessary.</p>
+<h2 id="target-shape">Target Shape<a class="headerlink" href="#target-shape" title="Permanent link">&para;</a></h2>
+<p>The target split, if the proof succeeds, is:</p>
+<ul>
+<li>Postgres for transactional application metadata: users, sessions, API
+  tokens, auth configuration, expected benchmark inventory, alerting
+  configuration, ingestion receipts, job state, schema metadata, and canonical
+  result identity.</li>
+<li>A columnar analytical fact store for high-volume benchmark facts, histories,
+  comparison inputs, project-health rollups, broad discovery, and possibly
+  regression snapshots.</li>
+</ul>
+<p>DuckLake-backed Parquet queried through DuckDB is the first cataloged candidate
+to test. It offers column projection, partition pruning, file-level statistics,
+and a SQL catalog without requiring Spark, Hive, or distributed services.</p>
+<h2 id="migration-path">Migration Path<a class="headerlink" href="#migration-path" title="Permanent link">&para;</a></h2>
+<p>Existing deployments should be able to move in stages:</p>
+<ol>
+<li>Restore the existing production Postgres database into a test environment.</li>
+<li>Run the new Go server and Svelte app against the frozen schema.</li>
+<li>Validate read compatibility with the production-clone harness and browser
+   probes.</li>
+<li>Point benchmark submitters at the new <code>conbench</code> CLI, with optional
+   <code>conbench.migration</code> helpers for Python jobs that need payload-file writing,
+   without changing the result JSON contract.</li>
+<li>Add the analytical replica as an optional read-side component.</li>
+<li>Shadow selected read paths against both Postgres and the replica.</li>
+<li>Switch individual read-heavy interfaces only after shadow reads match and
+   rollback is a configuration change.</li>
+</ol>
+<p>The analytical replica is additive. If it fails, Conbench falls back to
+Postgres reads. Result IDs, repository names, run identifiers, API responses,
+and submitted payloads must not change because a deployment enables the replica.</p>
+<h2 id="first-proof">First Proof<a class="headerlink" href="#first-proof" title="Permanent link">&para;</a></h2>
+<p>The first storage experiment should be read-only:</p>
+<ol>
+<li>Export <code>benchmark_result</code> and small dimensions from a production-clone
+   Postgres database to Parquet.</li>
+<li>Partition facts by year and month of result timestamp.</li>
+<li>Query plain Parquet with DuckDB to establish a lower-bound read baseline.</li>
+<li>Register the same files through DuckLake and repeat the workload.</li>
+<li>Compare current Postgres, plain Parquet, monthly DuckLake, and monthly plus
+   bucketed fingerprint partitioning if needed.</li>
+<li>Record only sanitized aggregate findings in the production-clone
+   compatibility documentation; raw clone artifacts stay ignored under <code>var/</code>.</li>
+</ol>
+<p>Start with monthly partitioning. A 100M-row, multi-year corpus gives roughly
+dozens of monthly partitions, not thousands of daily partitions. Daily
+partitioning risks small files and excessive metadata before there is evidence
+that it helps.</p>
+<p>Candidate physical orderings inside monthly files:</p>
+<ul>
+<li><code>timestamp, history_fingerprint, run_id</code>,</li>
+<li><code>history_fingerprint, timestamp</code>,</li>
+<li><code>repository, history_fingerprint, timestamp</code>.</li>
+</ul>
+<h2 id="query-families-to-benchmark">Query Families To Benchmark<a class="headerlink" href="#query-families-to-benchmark" title="Permanent link">&para;</a></h2>
+<p>Benchmark the product workflows, not synthetic full scans:</p>
+<ul>
+<li>single-series history filtered by history fingerprint and ordered by commit
+  timestamp,</li>
+<li>project attention rollups filtered by repository and recent time window,</li>
+<li>compare-since-baseline queries grouped by history fingerprint,</li>
+<li>recent run/result browsing filtered by <code>run_id</code>, <code>batch_id</code>, run reason, and
+  timestamp,</li>
+<li>export, append, and compaction throughput.</li>
+</ul>
+<p>Measure storage size, cold and warm latency, CPU time, bytes read, files
+scanned versus skipped, memory use, concurrent reader behavior, export
+throughput, and operational complexity.</p>
+<h2 id="proof-gates">Proof Gates<a class="headerlink" href="#proof-gates" title="Permanent link">&para;</a></h2>
+<p>The analytical replica is not production-ready until these gates pass against a
+production-derived clone:</p>
+<ul>
+<li>Correctness: result identity, history rows, compare inputs, CI report rows,
+  regression verdicts, and pagination boundaries match the Postgres-backed
+  implementation for the sampled workload.</li>
+<li>Performance: broad discovery, default browse, rollups, and long histories are
+  materially faster than Postgres, while targeted result/detail/compare/CI paths
+  do not regress.</li>
+<li>Freshness: expected ingestion-to-query lag is measured and documented.</li>
+<li>Reconciliation: exports and incremental refreshes can detect missing,
+  duplicated, or stale facts.</li>
+<li>Operations: storage size, compaction, backup/restore, observability,
+  concurrent readers, and failure recovery are understood well enough to run.</li>
+<li>Cost: storage, export compute, refresh compute, and operator work are lower
+  than continuing to scale broad analytical reads inside the transactional
+  Postgres database.</li>
+<li>Cutover: each read-heavy service can run in shadow mode and fall back to
+  Postgres without changing public API behavior.</li>
+</ul>
+<h2 id="service-boundary">Service Boundary<a class="headerlink" href="#service-boundary" title="Permanent link">&para;</a></h2>
+<p>The public API should not expose the physical storage choice. Keep storage
+behind service interfaces such as:</p>
+<ul>
+<li><code>ResultWriter</code>,</li>
+<li><code>HistoryReader</code>,</li>
+<li><code>CompareReader</code>,</li>
+<li><code>ProjectHealthReader</code>,</li>
+<li><code>RunBrowser</code>.</li>
+</ul>
+<p>The current implementation can keep all interfaces Postgres-backed. A
+prototype can replace only read-heavy interfaces first while ingestion remains
+Postgres-backed until read-side wins are proven.</p>
+<h2 id="questions-before-a-primary-fact-store">Questions Before A Primary Fact Store<a class="headerlink" href="#questions-before-a-primary-fact-store" title="Permanent link">&para;</a></h2>
+<p>Before moving writes away from the current Postgres fact table, answer:</p>
+<ul>
+<li>what lag is acceptable between a submitted result and analytical visibility,</li>
+<li>where result IDs are generated,</li>
+<li>how partial writes are recovered,</li>
+<li>how metadata rows and fact rows are connected atomically,</li>
+<li>whether alerts can tolerate eventual consistency,</li>
+<li>how snapshots and rollback work after bad ingests,</li>
+<li>how rare deletes or compliance removals are applied.</li>
+</ul>
+<p>The next production cutover decision should come from measured
+production-clone workloads. Do not replace the storage model just to match an
+architectural preference.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant.progress","navigation.path","navigation.sections"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      
+    
+  </body>
+</html>

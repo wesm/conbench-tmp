@@ -1,0 +1,1809 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Language-independent continuous benchmarking with a Go API, Svelte dashboard, CLI-first writes, and generated SDKs.">
+      
+      
+        <meta name="author" content="Conbench maintainers">
+      
+      
+        <link rel="canonical" href="https://wesm.github.io/conbench-tmp/operations/">
+      
+      
+        <link rel="prev" href="../migration/legacy-burndown-matrix/">
+      
+      
+        <link rel="next" href="../prod-clone-compatibility/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.45">
+    
+    
+      
+        <title>Operations - Conbench</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.fba56155.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#operations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="Conbench" class="md-header__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Conbench
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Operations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Conbench" class="md-nav__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Conbench
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Get started
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Get started
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Quickstart
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CLI Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Concepts
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../submitting-results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Submitting Results
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CI Reporting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Using Conbench
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Using Conbench
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browsing-and-comparing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Browsing And Comparing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboard-screenshots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dashboard Screenshots
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regression-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Regression Analysis
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Alerting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-and-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API And SDK
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-and-tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Authentication And Tokens
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Migration
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/python-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migrating From The Legacy Python Conbench App
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/python-legacy-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Python Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/legacy-parity-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Parity Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/deprecation-notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Package Deprecation Notices
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/legacy-burndown-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Burndown Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Operations
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Runtime Contract
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Local Development
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Container Runtime
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-and-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        CI And Releases
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-deploy-manifests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Kubernetes Deploy Manifests
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Metrics
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unknown-commit-repair" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unknown Commit Repair
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Alert Evaluation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Alert Delivery
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-clone-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Production-Clone Compatibility
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cutover-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Cutover Notes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prod-clone-compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Production-Clone Compatibility
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Storage Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contributing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Runtime Contract
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Local Development
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Container Runtime
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-and-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        CI And Releases
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-deploy-manifests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Kubernetes Deploy Manifests
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Metrics
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unknown-commit-repair" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unknown Commit Repair
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Alert Evaluation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Alert Delivery
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-clone-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Production-Clone Compatibility
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cutover-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Cutover Notes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="./.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="././" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Operations
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="operations">Operations<a class="headerlink" href="#operations" title="Permanent link">&para;</a></h1>
+<p>The new Conbench runtime is a Go server with an embedded Svelte application and
+a Postgres database. The legacy Flask/Gunicorn runtime source is deleted from
+this branch.</p>
+<h2 id="runtime-contract">Runtime Contract<a class="headerlink" href="#runtime-contract" title="Permanent link">&para;</a></h2>
+<p>The server is configured through environment variables. Treat
+<code>internal/serverapp/app.go</code> and the <code>conbench serve</code> command as the source of
+truth; this table is the public deployment summary.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CONBENCH_DB_URL</code></td>
+<td>yes</td>
+<td>Postgres connection URL. <code>DATABASE_URL</code> is accepted only as a fallback when <code>CONBENCH_DB_URL</code> is unset.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_ADDR</code></td>
+<td>no</td>
+<td>Listen address. Defaults to <code>:8080</code>.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_INTENDED_BASE_URL</code></td>
+<td>for OIDC/session deployments</td>
+<td>Public browser URL for redirects, report links, and cookie security decisions.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_OIDC_ISSUER_URL</code></td>
+<td>for OIDC</td>
+<td>OIDC issuer URL. If any OIDC variable is set, all OIDC variables, <code>CONBENCH_INTENDED_BASE_URL</code>, and <code>CONBENCH_SESSION_SECRET</code> must be set.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_OIDC_CLIENT_ID</code></td>
+<td>for OIDC</td>
+<td>OIDC client id.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_OIDC_CLIENT_SECRET</code></td>
+<td>for OIDC</td>
+<td>OIDC client secret.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_SESSION_SECRET</code></td>
+<td>for session auth</td>
+<td>HMAC key for session and pending-login cookies. If set, it must be at least 32 characters.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_API_TOKEN</code></td>
+<td>optional</td>
+<td>Static operator bearer token for write automation or break-glass use. Prefer user-owned API tokens for normal automation.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_AUTH_DISABLED</code></td>
+<td>dev only</td>
+<td>Set to <code>true</code> to disable write auth. Do not use in shared deployments.</td>
+</tr>
+<tr>
+<td><code>GITHUB_API_TOKEN</code></td>
+<td>optional</td>
+<td>Comma-separated GitHub token pool. Enables commit metadata fetch and asynchronous default-branch ancestry backfill.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_GITHUB_TIMEOUT</code></td>
+<td>optional</td>
+<td>Go duration budget for in-request GitHub enrichment. Defaults to <code>5s</code>.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_INIT_SCHEMA</code></td>
+<td>dev only</td>
+<td>Set to <code>true</code> to apply the embedded schema if missing. Do not point this at a production database.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_SEED</code></td>
+<td>dev only</td>
+<td>Set to <code>true</code> to seed deterministic demo data.</td>
+</tr>
+<tr>
+<td><code>CONBENCH_SEED_DEV_TOKEN</code></td>
+<td>dev/e2e only</td>
+<td>Seeds a user-owned API token for local/e2e authentication. The server logs only the token prefix.</td>
+</tr>
+</tbody>
+</table>
+<p>Reads are public by default. Writes accept user-owned API tokens, valid session
+cookies, or the static operator token when configured. Token management requires
+a user principal, so the static operator token cannot list, create, or revoke
+user API tokens.</p>
+<p>Cookie <code>Secure</code> behavior follows <code>CONBENCH_INTENDED_BASE_URL</code>: loopback
+development hosts (<code>localhost</code>, <code>127.0.0.1</code>, <code>::1</code>) allow non-secure cookies;
+other hosts use secure cookies.</p>
+<h2 id="local-development">Local Development<a class="headerlink" href="#local-development" title="Permanent link">&para;</a></h2>
+<p>Build binaries and the embedded SPA:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>make<span class="w"> </span>build
+</span></code></pre></div>
+<p>Run Go tests:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>make<span class="w"> </span>go-test
+</span></code></pre></div>
+<p>Run the generated-client and schema drift gates:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>make<span class="w"> </span>codegen-check
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>make<span class="w"> </span>sqlc-check
+</span></code></pre></div>
+<h2 id="container-runtime">Container Runtime<a class="headerlink" href="#container-runtime" title="Permanent link">&para;</a></h2>
+<p>Build and smoke-test the Go server container:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>make<span class="w"> </span>server-container-smoke
+</span></code></pre></div>
+<p>The new runtime image is <code>Dockerfile.server</code>. It builds the Svelte app, embeds
+it in the single <code>conbench</code> binary, and runs <code>conbench serve</code> on container port
+8080. It does not install the legacy Flask application or Python package stack.</p>
+<p>For local manual testing:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>make<span class="w"> </span>server-container-up
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>make<span class="w"> </span>server-container-down
+</span></code></pre></div>
+<p><code>server-container-up</code> publishes <code>127.0.0.1:8080</code> by default. Override
+<code>DCOMP_CONBENCH_SERVER_HOST_PORT</code> if that port is already in use. The smoke
+target defaults to <code>127.0.0.1:18080</code> to avoid common local development
+conflicts; override <code>SERVER_CONTAINER_SMOKE_HOST_PORT</code> and
+<code>SERVER_CONTAINER_SMOKE_URL</code> together if needed.</p>
+<p><code>Dockerfile.schema</code> and <code>docker-compose.schema.yml</code> remain temporarily for
+Alembic/schema tooling. They install only <code>requirements-schema.txt</code>, not the
+legacy Flask application dependency stack.</p>
+<h2 id="ci-and-releases">CI And Releases<a class="headerlink" href="#ci-and-releases" title="Permanent link">&para;</a></h2>
+<p>The active GitHub Actions CI workflow is <code>.github/workflows/ci.yml</code>. It runs the
+Go, web, generated SDK, docs, schema/codegen drift, container, deploy-manifest,
+and e2e gates for the new Go/Svelte implementation.</p>
+<p>The PyPI release workflow publishes only the generated Python SDK from
+<code>sdk/python</code> as the <code>conbench</code> package. Release builds stamp a date/run-based
+SDK version before packaging so uploaded artifacts supersede the retired legacy
+<code>conbench</code> package line and do not reuse a static development version. Legacy
+package publishing is retired for the maintained release path. <code>benchadapt</code>,
+<code>benchclients</code>, <code>benchconnect</code>, <code>benchrun</code>, <code>benchalerts</code>,
+<code>legacy/conbenchlegacy</code>, and the legacy Flask <code>conbench/</code> app package have been
+deleted after their cutover decisions.</p>
+<p>OIDC CLI loopback login is safe across multiple server replicas. The server
+stores only a hash of the short-lived one-time loopback code in Postgres and
+marks it redeemed during <code>cli-exchange</code>, so the callback request and exchange
+request do not need sticky routing.</p>
+<p>The steady-state serving Deployment runs two replicas with a normal
+<code>RollingUpdate</code> strategy. If an installation is upgrading directly from an
+image that still used process-local CLI login codes, deploy one intermediate
+shared-store version at one replica with <code>strategy.type: Recreate</code> before
+scaling out. That one-time transition prevents old and new pods from splitting
+a single CLI login flow behind the Service.</p>
+<h2 id="kubernetes-deploy-manifests">Kubernetes Deploy Manifests<a class="headerlink" href="#kubernetes-deploy-manifests" title="Permanent link">&para;</a></h2>
+<p>Kubernetes deployments use two images for now:</p>
+<ul>
+<li><code>conbench-server</code>, built from <code>Dockerfile.server</code>, is the server image. It
+  runs <code>conbench serve</code> with the embedded Svelte app on port 8080.</li>
+<li><code>conbench-schema</code>, built from <code>Dockerfile.schema</code>, runs Alembic migrations
+  against the frozen schema with only the temporary schema dependency set.</li>
+</ul>
+<p>The serving Deployment runs two replicas, uses <code>/api/ping</code> startup, liveness,
+and readiness probes, and the Service targets the <code>http</code> container port.
+<code>/api/ping</code> is a process-health endpoint rather than a database query, so
+liveness does not restart pods during transient database pressure. The
+migration Job intentionally keeps using the schema image until schema ownership
+moves out of the legacy Python/Alembic path.</p>
+<p>The Go server requires <code>CONBENCH_DB_URL</code>; the deploy manifest renderer can
+derive it from legacy <code>DB_*</code> fields for the transition period. Those <code>DB_*</code>
+fields are deploy inputs only: the server pod receives <code>CONBENCH_DB_URL</code>, not
+separate database username, password, host, port, or database-name variables.
+The runtime ConfigMap is intentionally limited to <code>CONBENCH_ADDR</code> and
+<code>CONBENCH_INTENDED_BASE_URL</code>.</p>
+<p>The old <code>.buildkite</code> deploy and rollback entrypoints are retired. The reusable
+manifest-rendering helper now lives in <code>scripts/go_deploy_runtime.sh</code> so
+deployment owners can source it from their own CI system or use it as a
+reference while moving to a deployment-specific pipeline.</p>
+<p>Set <code>CONBENCH_DEPLOY_VERSION</code> to the immutable commit SHA or release version
+being deployed before sourcing the helper. The helper refuses to render image
+specs without that value, so deployment automation cannot silently push or roll
+out mutable <code>dev</code> tags.</p>
+<p>Password-era Flask variables such as <code>SECRET_KEY</code>, <code>REGISTRATION_KEY</code>,
+<code>APPLICATION_NAME</code>, <code>BENCHMARKS_DATA_PUBLIC</code>, <code>DISTRIBUTION_COMMITS</code>, and
+<code>SVS_TYPE</code> are not runtime pod environment variables in the Go server. OIDC is
+all-or-nothing: if any OIDC setting is present, the deploy must provide issuer,
+client id, client secret, <code>CONBENCH_INTENDED_BASE_URL</code>, and a
+<code>CONBENCH_SESSION_SECRET</code> at least 32 characters long.</p>
+<h2 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h2>
+<p>The Go server exposes Prometheus text metrics at <code>/metrics</code>. The endpoint is
+served outside the OpenAPI surface and is unauthenticated so Prometheus can
+scrape it through the Kubernetes Service. Production ingress blocks public
+<code>/metrics</code> requests with a fixed response; scrape through the cluster Service
+instead of the internet-facing load balancer.</p>
+<p>Current first-party metrics are intentionally small:</p>
+<ul>
+<li><code>conbench_up</code>: constant gauge set to <code>1</code> while the server is responding.</li>
+<li><code>conbench_github_unknown_commits_total</code>: process-local counter of GitHub
+  commit enrichments that degraded to unknown metadata during result ingestion.</li>
+<li><code>conbench_http_requests_total{method,route,status}</code>: request counter with
+  low-cardinality route and method labels. Unexpected methods are reported as
+  <code>OTHER</code>.</li>
+<li><code>conbench_http_request_duration_seconds{method,route,status}</code>: summary with
+  <code>_count</code> and <code>_sum</code> series for request latency.</li>
+</ul>
+<p><code>conbench_github_unknown_commits_total</code> is not a database backlog size. It resets
+when the process restarts and only counts degradations observed by that process.
+Use it as an ingestion-health signal; use the repair command below to inspect
+and repair persisted unknown commit rows.</p>
+<p>The ServiceMonitor scrapes <code>/metrics</code> through the <code>conbench-service-port</code>
+Service port when the cluster has the ServiceMonitor CRD. The legacy
+Flask/BMRT Grafana dashboard is retired rather than ported: it described cache
+and Flask request internals that do not exist in the Go runtime. New dashboard
+panels should be designed from the Go metrics above and from user-facing
+Conbench workflows instead of preserving old panel names.</p>
+<p>The repository does not ship a kube-prometheus or Grafana stack generator.
+Cluster monitoring stacks are deployment-owned; Conbench owns only the
+application <code>ServiceMonitor</code> that advertises how to scrape <code>/metrics</code>.</p>
+<h2 id="unknown-commit-repair">Unknown Commit Repair<a class="headerlink" href="#unknown-commit-repair" title="Permanent link">&para;</a></h2>
+<p>When GitHub enrichment fails during ingestion, Conbench still stores the
+benchmark result and a minimal commit row so writes do not fail because of a
+transient GitHub problem. Those rows have only SHA and repository metadata. They
+can make affected results absent from default-branch history, series, and CI
+lookback paths until the commit row is repaired.</p>
+<p>Use the single <code>conbench</code> binary to repair those rows in place:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_DB_URL</span><span class="o">=</span><span class="s2">&quot;postgres://...&quot;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GITHUB_API_TOKEN</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>conbench<span class="w"> </span>admin<span class="w"> </span>repair-commits<span class="w"> </span>--dry-run<span class="w"> </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>Run the command against a production-clone first when changing flags or
+operating on a large backlog. The dry run calls GitHub and reports what would be
+updated without mutating the database. A typical workflow is:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>conbench<span class="w"> </span>admin<span class="w"> </span>repair-commits<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--repository<span class="w"> </span><span class="s2">&quot;https://github.com/apache/arrow&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--limit<span class="w"> </span><span class="m">500</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--dry-run<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>--format<span class="w"> </span>json
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>conbench<span class="w"> </span>admin<span class="w"> </span>repair-commits<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span>--repository<span class="w"> </span><span class="s2">&quot;https://github.com/apache/arrow&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span>--limit<span class="w"> </span><span class="m">500</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>If the JSON output contains <code>next_cursor</code>, pass it to the next invocation:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>conbench<span class="w"> </span>admin<span class="w"> </span>repair-commits<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--repository<span class="w"> </span><span class="s2">&quot;https://github.com/apache/arrow&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>--cursor<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NEXT_CURSOR</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>--limit<span class="w"> </span><span class="m">500</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>Use <code>--backfill</code> when repairing default-branch commits and you want Conbench to
+enqueue ancestry backfill for earlier commits on that branch. <code>--backfill-timeout</code>
+controls how long the command waits for queued backfill work to drain before it
+returns. If the timeout is hit, the JSON summary sets <code>backfill_timed_out</code> and
+the command exits non-zero after printing the summary.</p>
+<p>The command reads <code>CONBENCH_DB_URL</code> and <code>GITHUB_API_TOKEN</code>; it does not fall
+back to <code>DATABASE_URL</code>. It prints summaries to stdout and diagnostics to stderr,
+without printing the token or database URL. Repaired rows make existing
+benchmark results visible through history, series, and CI reporting without
+resubmitting benchmark payloads.</p>
+<h2 id="alert-evaluation">Alert Evaluation<a class="headerlink" href="#alert-evaluation" title="Permanent link">&para;</a></h2>
+<p>Server-side alert rules are evaluated by the single <code>conbench</code> binary. Run the
+command from trusted operations automation, such as a cron entry, Kubernetes
+CronJob, or CI scheduled job:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_DB_URL</span><span class="o">=</span><span class="s2">&quot;postgres://...&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_INTENDED_BASE_URL</span><span class="o">=</span><span class="s2">&quot;https://conbench.example&quot;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>conbench<span class="w"> </span>admin<span class="w"> </span>alerts<span class="w"> </span>evaluate<span class="w"> </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>The evaluator reads enabled alert rules, finds each rule's latest matching run,
+uses the CI report engine to classify it, and records open/resolve events when
+state changes. It prints summaries to stdout and diagnostics to stderr without
+printing the database URL.</p>
+<p><code>CONBENCH_INTENDED_BASE_URL</code> is optional for the command, but deployed
+environments should set it so stored report URLs are absolute. The command does
+not require <code>GITHUB_API_TOKEN</code>; it relies on commit metadata already stored with
+benchmark results.</p>
+<h2 id="alert-delivery">Alert Delivery<a class="headerlink" href="#alert-delivery" title="Permanent link">&para;</a></h2>
+<p>Alert event delivery is also owned by the single <code>conbench</code> binary. Generic
+webhook, Slack incoming-webhook, GitHub Check Run, and GitHub commit-comment
+channels, plus SMTP email, are backed by the durable alert-delivery outbox:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_DB_URL</span><span class="o">=</span><span class="s2">&quot;postgres://...&quot;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_ALERT_WEBHOOK_URL</span><span class="o">=</span><span class="s2">&quot;https://hooks.example/conbench&quot;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>conbench<span class="w"> </span>admin<span class="w"> </span>alerts<span class="w"> </span>deliver<span class="w"> </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>For Slack, use the Slack channel and Slack-specific environment variable:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_DB_URL</span><span class="o">=</span><span class="s2">&quot;postgres://...&quot;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_ALERT_SLACK_WEBHOOK_URL</span><span class="o">=</span><span class="s2">&quot;https://hooks.slack.com/services/...&quot;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>conbench<span class="w"> </span>admin<span class="w"> </span>alerts<span class="w"> </span>deliver<span class="w"> </span>--channel<span class="w"> </span>slack<span class="w"> </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>For GitHub Checks, use the repository-scoped channel and a token with
+<code>checks:write</code> access:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_DB_URL</span><span class="o">=</span><span class="s2">&quot;postgres://...&quot;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_ALERT_GITHUB_REPOSITORY</span><span class="o">=</span><span class="s2">&quot;https://github.com/org/repo&quot;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GITHUB_TOKEN</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>conbench<span class="w"> </span>admin<span class="w"> </span>alerts<span class="w"> </span>deliver<span class="w"> </span>--channel<span class="w"> </span>github-check<span class="w"> </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>For GitHub commit comments, use the same repository and token configuration:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_DB_URL</span><span class="o">=</span><span class="s2">&quot;postgres://...&quot;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_ALERT_GITHUB_REPOSITORY</span><span class="o">=</span><span class="s2">&quot;https://github.com/org/repo&quot;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GITHUB_TOKEN</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>conbench<span class="w"> </span>admin<span class="w"> </span>alerts<span class="w"> </span>deliver<span class="w"> </span>--channel<span class="w"> </span>github-comment<span class="w"> </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>For email delivery, configure SMTP and recipients:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_DB_URL</span><span class="o">=</span><span class="s2">&quot;postgres://...&quot;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_ALERT_EMAIL_SMTP_ADDR</span><span class="o">=</span><span class="s2">&quot;smtp.example:587&quot;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_ALERT_EMAIL_FROM</span><span class="o">=</span><span class="s2">&quot;Conbench Alerts &lt;alerts@example.com&gt;&quot;</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONBENCH_ALERT_EMAIL_TO</span><span class="o">=</span><span class="s2">&quot;ops@example.com,perf@example.com&quot;</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>conbench<span class="w"> </span>admin<span class="w"> </span>alerts<span class="w"> </span>deliver<span class="w"> </span>--channel<span class="w"> </span>email<span class="w"> </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p>The command creates missing delivery rows for persisted alert events, attempts
+pending deliveries, and records delivered or failed state. Re-running it does
+not resend already delivered events for the same channel and target. Use
+<code>--limit</code> to bound one run, <code>--retry-after</code> to control failed-delivery retry
+delay, and <code>--timeout</code> to bound each delivery request. Run it after
+<code>conbench admin alerts evaluate</code> from the same scheduler, or on its own cadence
+if the webhook receiver is down and needs retries. Overlapping runs are safe:
+each due delivery is claimed and leased atomically before its HTTP request, so
+no event is sent twice. Keep <code>--retry-after</code> greater than <code>--timeout</code>; the CLI
+rejects a shorter lease window.</p>
+<p>GitHub Check and commit-comment delivery target one repository and enqueue only
+alert events from matching alert rules. Webhook, Slack, and email delivery are
+generic channels that enqueue every stored alert event for the selected target.
+The canonical delivery model and current non-goals are documented in
+<a href="../alerting/">Alerting</a>.</p>
+<h2 id="production-clone-compatibility">Production-Clone Compatibility<a class="headerlink" href="#production-clone-compatibility" title="Permanent link">&para;</a></h2>
+<p>The repository includes a local-only compatibility harness for read-only
+production-clone validation. It is intentionally deployment-local and must not
+commit private infrastructure details. It runs through
+<code>conbench admin prod-clone ...</code> so compatibility checks do not add a second Go
+binary to the maintained runtime. The public contract, safety model, and
+sanitized scale findings are documented in
+<a href="../prod-clone-compatibility/">Production-Clone Compatibility</a>.</p>
+<h2 id="cutover-notes">Cutover Notes<a class="headerlink" href="#cutover-notes" title="Permanent link">&para;</a></h2>
+<p>Before deleting legacy runtime files, the burndown matrix must show:</p>
+<ul>
+<li>every legacy surface is replaced, retired, preserved temporarily, or retained
+  as schema/reference material,</li>
+<li>active CI, docs, packaging, Docker, Kubernetes, and release paths no longer
+  reference the deleted files,</li>
+<li>Go/web/sdk/schema/e2e gates pass after deletion.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant.progress","navigation.path","navigation.sections"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      
+    
+  </body>
+</html>

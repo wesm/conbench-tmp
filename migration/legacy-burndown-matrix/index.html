@@ -1,0 +1,2268 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Language-independent continuous benchmarking with a Go API, Svelte dashboard, CLI-first writes, and generated SDKs.">
+      
+      
+        <meta name="author" content="Conbench maintainers">
+      
+      
+        <link rel="canonical" href="https://wesm.github.io/conbench-tmp/migration/legacy-burndown-matrix/">
+      
+      
+        <link rel="prev" href="../deprecation-notices/">
+      
+      
+        <link rel="next" href="../../operations/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.45">
+    
+    
+      
+        <title>Legacy Burndown Matrix - Conbench</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.fba56155.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#legacy-burndown-matrix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Conbench" class="md-header__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Conbench
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Legacy Burndown Matrix
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Conbench" class="md-nav__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Conbench
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Get started
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Get started
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Quickstart
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CLI Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Concepts
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../submitting-results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Submitting Results
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ci-reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CI Reporting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Using Conbench
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Using Conbench
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browsing-and-comparing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Browsing And Comparing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboard-screenshots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dashboard Screenshots
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Regression Analysis
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../alerting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Alerting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-and-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API And SDK
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-and-tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Authentication And Tokens
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Migration
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migrating From The Legacy Python Conbench App
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-legacy-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Python Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legacy-parity-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Parity Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deprecation-notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Package Deprecation Notices
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Burndown Matrix
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Burndown Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#flask-api-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flask API Routes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flaskjinja-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flask/Jinja Pages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Python Packages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations-release-and-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Operations, Release, And CI
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-and-reference-assets" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Schema And Reference Assets
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-asset-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reference Asset Retention
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deletion-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Deletion Rule
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Operations
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prod-clone-compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Production-Clone Compatibility
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Storage Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contributing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#flask-api-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flask API Routes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flaskjinja-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flask/Jinja Pages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Python Packages
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations-release-and-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Operations, Release, And CI
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-and-reference-assets" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Schema And Reference Assets
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-asset-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reference Asset Retention
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deletion-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Deletion Rule
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="../python-app/" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Migration
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="legacy-burndown-matrix">Legacy Burndown Matrix<a class="headerlink" href="#legacy-burndown-matrix" title="Permanent link">&para;</a></h1>
+<p>This matrix is the durable migration ledger for the retired Python/Flask
+implementation. A legacy surface can be removed only when its row is classified,
+the listed replacement checks pass, and the public docs tell users what to do.
+Ledger refs preserve the kata issues that originally tracked a row; they are
+traceability, not proof of an active blocker.</p>
+<p>Decision values:</p>
+<ul>
+<li><strong>Replaced:</strong> new system has the supported path.</li>
+<li><strong>Retired:</strong> intentionally not carried forward.</li>
+<li><strong>Temporary:</strong> retained as a migration aid or reference.</li>
+<li><strong>Schema/reference:</strong> preserved because it defines data or golden behavior.</li>
+</ul>
+<h2 id="flask-api-routes">Flask API Routes<a class="headerlink" href="#flask-api-routes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Legacy surface</th>
+<th>Purpose</th>
+<th>New path</th>
+<th>Decision</th>
+<th>Evidence needed</th>
+<th>Docs destination</th>
+<th>Ledger ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/</code>, <code>/api</code></td>
+<td>legacy API index/help</td>
+<td><code>/docs</code>, <code>/openapi.yaml</code>, <code>/api/ping</code></td>
+<td>Retired</td>
+<td><code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>API and SDK</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/ping/</code></td>
+<td>health check</td>
+<td><code>/api/ping</code></td>
+<td>Replaced</td>
+<td><code>make go-test-short</code>, <code>make build-docs</code></td>
+<td>Operations</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/docs.json</code>, <code>/api/redoc</code></td>
+<td>Flask API docs</td>
+<td><code>/openapi.yaml</code>, <code>/openapi-3.0.yaml</code>, <code>/docs</code></td>
+<td>Replaced</td>
+<td><code>make codegen-check</code>, <code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>API and SDK</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/benchmark-results/</code>, <code>/api/benchmark-results/{id}/</code></td>
+<td>list/read results</td>
+<td><code>/api/benchmark-results</code>, <code>/api/benchmark-results/{id}</code></td>
+<td>Replaced</td>
+<td><code>make go-test</code>, <code>make python-sdk-check</code>, <code>make build-docs</code></td>
+<td>Browsing and comparing</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>GET /api/benchmarks/</code>, <code>POST /api/benchmarks/</code></td>
+<td>legacy result collection alias</td>
+<td><code>GET /api/benchmark-results</code>; <code>POST /api/results</code> via <code>conbench results submit</code></td>
+<td>Replaced; alias retired</td>
+<td><code>make migration-examples-test</code>, <code>make build-docs</code></td>
+<td>Migration guide, submitting results</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>GET/PUT/DELETE /api/benchmarks/{id}/</code></td>
+<td>legacy result detail/update/delete alias</td>
+<td><code>GET/PUT/DELETE /api/benchmark-results/{id}</code></td>
+<td>Replaced; alias retired</td>
+<td><code>make go-test</code>, <code>make build-docs</code></td>
+<td>Migration guide</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/history/{id}/</code></td>
+<td>result history</td>
+<td><code>/api/history/{benchmark_result_id}</code> and <code>/api/history?fingerprint=</code></td>
+<td>Replaced</td>
+<td><code>make go-test</code>, <code>make build-docs</code></td>
+<td>Browsing and comparing</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/history/download/{id}/</code></td>
+<td>CSV history export</td>
+<td><code>conbench history export &lt;result-id&gt; --server URL</code>; JSON history remains available via API/SDK</td>
+<td>Replaced</td>
+<td><code>make go-test</code>, <code>make build-docs</code></td>
+<td>Browsing and comparing, migration</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/compare/benchmark-results/{ids}/</code></td>
+<td>compare two results</td>
+<td><code>/api/compare/benchmark-results</code></td>
+<td>Replaced</td>
+<td><code>make go-test</code>, <code>cd web &amp;&amp; bun run test</code>, <code>make build-docs</code></td>
+<td>Browsing and comparing</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/compare/runs/{ids}/</code></td>
+<td>compare runs</td>
+<td><code>/api/ci/report?run_ids=...&amp;baseline_run_ids=...</code>; CLI <code>conbench ci report --run-ids ... --baseline-run-ids ...</code></td>
+<td>Replaced; alias retired</td>
+<td><code>make go-test</code>, <code>cd web &amp;&amp; bun run test</code>, <code>make build-docs</code></td>
+<td>Migration guide, CI reporting</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/runs/</code>, <code>/api/runs/{id}/</code></td>
+<td>run list/detail</td>
+<td><code>/api/benchmark-results?run_id=...</code> for run rows; <code>/api/ci/report</code> or CLI <code>conbench ci report</code> for commit/run baseline diagnostics</td>
+<td>Replaced; alias retired</td>
+<td><code>make go-test</code>, <code>make python-sdk-check</code>, <code>make build-docs</code></td>
+<td>Concepts, migration</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/commits/</code>, <code>/api/contexts/</code>, <code>/api/hardware/</code>, <code>/api/info/</code></td>
+<td>low-level object browse</td>
+<td>Product endpoints expose embedded commit/context/info/hardware metadata; <code>/api/series?hardware=...</code> covers hardware navigation</td>
+<td>Retired; no catalog aliases</td>
+<td><code>make go-test</code>, <code>make docs-link-check</code></td>
+<td>API and SDK, browsing</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/users/</code>, <code>/api/users/{id}/</code>, <code>/api/register/</code></td>
+<td>user admin/register</td>
+<td>OIDC/session auth, <code>/account</code>, <code>/api/users/me</code>, <code>/api/tokens</code>, CLI token commands</td>
+<td>Retired except self-service identity/token APIs</td>
+<td><code>make go-test</code>, <code>cd web &amp;&amp; bun run test</code>, <code>make build-docs</code></td>
+<td>Auth and tokens, migration</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/api/login/</code>, <code>/api/logout/</code>, <code>/api/google/*</code></td>
+<td>password/OAuth login</td>
+<td><code>/api/auth/*</code>, CLI loopback login</td>
+<td>Replaced</td>
+<td><code>make go-test-short</code>, <code>make build-docs</code></td>
+<td>Auth and tokens</td>
+<td><code>g7q9</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="flaskjinja-pages">Flask/Jinja Pages<a class="headerlink" href="#flaskjinja-pages" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Legacy surface</th>
+<th>Purpose</th>
+<th>New path</th>
+<th>Decision</th>
+<th>Evidence needed</th>
+<th>Docs destination</th>
+<th>Ledger ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code>, <code>/index/</code></td>
+<td>landing/browse</td>
+<td>Svelte recent-run home and <code>/series</code> explorer</td>
+<td>Replaced</td>
+<td><code>cd web &amp;&amp; bun run test</code>, <code>make docs-screenshots</code>, <code>make docs-screenshots-check</code>, <code>make build-docs</code></td>
+<td>Browsing and comparing</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/benchmark-results/</code>, <code>/benchmark-results/{id}/</code></td>
+<td>result list/detail</td>
+<td><code>/results</code>, <code>/results/{id}</code>, <code>/benchmark-results/{id}</code>, <code>/api/benchmark-results</code>, and workflow-specific dashboards</td>
+<td>Replaced</td>
+<td><code>make go-test-short</code>, <code>cd web &amp;&amp; bun run test</code>, <code>make docs-screenshots</code>, <code>make build-docs</code></td>
+<td>Browsing and comparing</td>
+<td><code>g7q9</code>, <code>fby3</code></td>
+</tr>
+<tr>
+<td><code>/benchmarks/{id}/</code></td>
+<td>legacy result detail alias</td>
+<td><code>/results/{id}</code>, <code>/benchmark-results/{id}</code></td>
+<td>Retired</td>
+<td><code>cd web &amp;&amp; bun run test</code>, <code>make build-docs</code></td>
+<td>Migration guide</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/c-benchmarks/*</code></td>
+<td>conceptual benchmark pages, case drilldown, and cross-series trend triage</td>
+<td><code>/series?q=&lt;benchmark&gt;</code> loaded family drilldown, <code>/series/&lt;fingerprint&gt;</code>, <code>/benchmarks/history/&lt;result-id&gt;</code>, CI reports, and trend flagged-point shortcuts</td>
+<td>Replaced for bounded family/case drilldown; old BMRT global slope-ranking page retired</td>
+<td><code>cd web &amp;&amp; bun run test</code>, <code>make docs-screenshots</code>, <code>make build-docs</code></td>
+<td>Concepts, browsing</td>
+<td><code>g7q9</code>, <code>pn04</code></td>
+</tr>
+<tr>
+<td><code>/compare/benchmark-results/{ids}/</code>, <code>/compare/benchmarks/{ids}/</code></td>
+<td>comparison UI</td>
+<td><code>/compare</code></td>
+<td>Replaced</td>
+<td><code>cd web &amp;&amp; bun run test</code>, <code>make docs-screenshots</code>, <code>make build-docs</code></td>
+<td>Browsing and comparing</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/compare/runs/{ids}/</code></td>
+<td>run comparison UI</td>
+<td><code>/ci/report?run_ids=...&amp;baseline_run_ids=...</code></td>
+<td>Replaced; Flask page retired</td>
+<td><code>cd web &amp;&amp; bun run test</code>, <code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>CI reporting</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/runs/{id}/</code></td>
+<td>run page</td>
+<td><code>/runs/&lt;run_id&gt;</code> dashboard, <code>/api/benchmark-results?run_id=...</code> for result rows, <code>/ci/report?run_ids=...</code> for baseline diagnostics</td>
+<td>Replaced as new dashboard surface; Flask page retired</td>
+<td><code>make go-test-short</code>, <code>cd web &amp;&amp; bun run test</code>, <code>make build-docs</code></td>
+<td>Browsing and comparing, migration</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/batches/{id}/</code></td>
+<td>batch page</td>
+<td><code>/batches/&lt;batch_id&gt;</code> dashboard, <code>/api/benchmark-results?batch_id=...</code>, and generated SDK list filter</td>
+<td>Replaced as new dashboard surface; Flask page retired</td>
+<td><code>make go-test-short</code>, <code>cd web &amp;&amp; bun run test</code>, <code>make build-docs</code></td>
+<td>Browsing and comparing, migration</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/hardware/</code>, <code>/hardware/{id}/</code></td>
+<td>hardware browse</td>
+<td>Series browse hardware filter and embedded hardware metadata on result/trend/CI pages</td>
+<td>Retired; Flask page retired</td>
+<td><code>cd web &amp;&amp; bun run test</code>, <code>make docs-link-check</code></td>
+<td>Browsing, migration</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/users/*</code></td>
+<td>user admin UI</td>
+<td>OIDC login, <code>/account</code>, <code>/api/users/me</code>, token CLI/API, and self-service alert-rule management; no password-era user admin page at cutover</td>
+<td>Retired except current-user self-service account dashboard</td>
+<td><code>make go-test-short</code>, <code>cd web &amp;&amp; bun run test</code>, <code>make build-docs</code></td>
+<td>Auth and tokens, migration</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/login/</code>, <code>/logout/</code>, <code>/register/</code></td>
+<td>auth UI</td>
+<td>OIDC login/logout and token CLI/API</td>
+<td>Replaced; local register retired</td>
+<td><code>make go-test-short</code>, <code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>Auth and tokens</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td><code>/robots.txt</code></td>
+<td>crawler policy</td>
+<td>deployment/static-file concern if needed</td>
+<td>Retired</td>
+<td><code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>Operations</td>
+<td><code>g7q9</code></td>
+</tr>
+<tr>
+<td>templates/static assets</td>
+<td>Flask/Jinja UI</td>
+<td>Svelte app assets</td>
+<td>Replaced</td>
+<td><code>make web-build</code>, <code>cd web &amp;&amp; bun run test</code>, <code>make docs-screenshots</code>, <code>make docs-screenshots-check</code></td>
+<td>Operations</td>
+<td><code>g7q9</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="python-packages">Python Packages<a class="headerlink" href="#python-packages" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Legacy surface</th>
+<th>Purpose</th>
+<th>New path</th>
+<th>Decision</th>
+<th>Evidence needed</th>
+<th>Docs destination</th>
+<th>Ledger ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>benchadapt.BenchmarkResult</code></td>
+<td>construct publishable payloads</td>
+<td>migration examples plus <code>conbench.migration</code> payload-file helper</td>
+<td>Retired; package deleted</td>
+<td><code>make python-sdk-check</code>, <code>make migration-examples-test</code></td>
+<td>Python migration</td>
+<td><code>wbmg</code></td>
+</tr>
+<tr>
+<td><code>benchadapt.adapters</code></td>
+<td>gbench/archery/folly/asv/callable adapters</td>
+<td>self-contained examples and targeted recipes</td>
+<td>Retired; package deleted</td>
+<td><code>make migration-examples-test</code>, <code>make python-sdk-check</code></td>
+<td>Python migration</td>
+<td><code>wbmg</code></td>
+</tr>
+<tr>
+<td><code>benchconnect submit/post/put</code></td>
+<td>augment and submit payloads</td>
+<td><code>conbench results submit</code></td>
+<td>Replaced; package deleted</td>
+<td><code>make migration-examples-test</code>, <code>make python-sdk-check</code></td>
+<td>Python migration</td>
+<td><code>wbmg</code></td>
+</tr>
+<tr>
+<td><code>benchconnect start/finish run</code></td>
+<td>run lifecycle</td>
+<td>explicit <code>run_id</code>, <code>run_tags</code>, <code>batch_id</code></td>
+<td>Retired; package deleted</td>
+<td><code>make migration-examples-test</code>, <code>make docs-link-check</code></td>
+<td>Concepts</td>
+<td><code>wbmg</code></td>
+</tr>
+<tr>
+<td><code>benchclients.ConbenchClient</code></td>
+<td>password/session HTTP client</td>
+<td>generated <code>conbench</code> SDK reads, CLI writes</td>
+<td>Replaced; package deleted</td>
+<td><code>make python-sdk-check</code></td>
+<td>API and SDK</td>
+<td><code>wbmg</code></td>
+</tr>
+<tr>
+<td><code>benchrun</code></td>
+<td>benchmark authoring/orchestration</td>
+<td>benchmark-project code emitting JSON payloads</td>
+<td>Retired; package deleted</td>
+<td><code>make migration-examples-test</code>, <code>make docs-link-check</code></td>
+<td>Python migration</td>
+<td><code>wbmg</code></td>
+</tr>
+<tr>
+<td><code>benchalerts</code> PR checks/comments</td>
+<td>synchronous CI diagnostics</td>
+<td><code>conbench ci report</code> and CI-owned summaries/status</td>
+<td>Replaced; package deleted</td>
+<td><code>make go-test-short</code>, <code>make build-docs</code></td>
+<td>CI reporting</td>
+<td><code>bkzm</code></td>
+</tr>
+<tr>
+<td><code>benchalerts</code> scheduled notifications</td>
+<td>async alerting, Slack routing, GitHub Check/comment/email mutation</td>
+<td><code>/account</code> alert-rule management, server alert rules/events, <code>conbench admin alerts evaluate</code>, and <code>conbench admin alerts deliver</code> generic webhook, Slack, GitHub Check, GitHub commit-comment, or email delivery</td>
+<td>Retired as Python-client responsibility; package deleted; state/evaluation/delivery moved server-side</td>
+<td><code>make go-test-short</code>, <code>make build-docs</code></td>
+<td>Alerting, migration</td>
+<td><code>8706</code>, <code>6026</code>, <code>tdee</code>, <code>dphg</code></td>
+</tr>
+<tr>
+<td><code>legacy/conbenchlegacy</code></td>
+<td>old benchmark runner</td>
+<td>JSON payloads plus CLI</td>
+<td>Retired; package deleted</td>
+<td><code>make migration-examples-test</code>, <code>make build-docs</code></td>
+<td>Python migration</td>
+<td><code>wbmg</code></td>
+</tr>
+<tr>
+<td>source-compatible retired Python imports, package directories, and single-file modules in active helper code, including <code>conbench_client</code></td>
+<td>old package import compatibility</td>
+<td>JSON payload files, generated <code>conbench</code> SDK reads, Go CLI writes, and the shared <code>scripts/retired_python_surfaces.py</code> guard contract</td>
+<td>Retired; active Python code must not import or recreate deleted packages</td>
+<td><code>make repo-hygiene-check</code>, <code>make migration-examples-test</code>, <code>make python-sdk-check</code></td>
+<td>Python migration</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Legacy surface</th>
+<th>Purpose</th>
+<th>New path</th>
+<th>Decision</th>
+<th>Evidence needed</th>
+<th>Docs destination</th>
+<th>Ledger ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docs/conf.py</code>, <code>docs/index.rst</code>, <code>docs/Makefile</code>, <code>docs/_build/</code>, <code>docs/.doctrees/</code>, <code>docs/_static/</code>, <code>docs/_templates/</code></td>
+<td>Sphinx docs build, generated output, and source assets</td>
+<td><code>zensical.toml</code>, <code>docs/site</code></td>
+<td>Replaced</td>
+<td><code>make build-docs</code></td>
+<td>Contributing</td>
+<td><code>9q1s</code></td>
+</tr>
+<tr>
+<td><code>zensical.toml</code>, <code>requirements-docs.txt</code></td>
+<td>active Zensical docs configuration and pinned builder</td>
+<td>public Markdown docs under <code>docs/site</code>; Makefile version check before build/serve</td>
+<td>Retained active docs tooling, not legacy Sphinx or Flask-package cruft</td>
+<td><code>make build-docs</code>, <code>make workflow-shape-check</code></td>
+<td>Contributing</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>docs/api_docs/*.rst</code></td>
+<td>autodoc for legacy packages</td>
+<td>migration guide and API/OpenAPI docs</td>
+<td>Replaced/retired</td>
+<td><code>make build-docs</code>, <code>make docs-link-check</code>, <code>make codegen-check</code>, <code>make python-sdk-check</code></td>
+<td>API and SDK, Python migration</td>
+<td><code>6qw4</code></td>
+</tr>
+<tr>
+<td><code>docs/pages/*_readme.rst</code></td>
+<td>old package README pages</td>
+<td>package migration guide</td>
+<td>Replaced</td>
+<td><code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>Python migration</td>
+<td><code>6qw4</code></td>
+</tr>
+<tr>
+<td><code>docs/pages/lookback_zscore.md</code></td>
+<td>regression concepts</td>
+<td>regression analysis page</td>
+<td>Replaced</td>
+<td><code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>Regression analysis</td>
+<td><code>6qw4</code></td>
+</tr>
+<tr>
+<td><code>docs/pages/benchmarking_and_the_dev_process.md</code></td>
+<td>philosophy</td>
+<td>overview/concepts</td>
+<td>Replaced</td>
+<td><code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>Overview, concepts</td>
+<td><code>6qw4</code></td>
+</tr>
+<tr>
+<td><code>docs/pages/img/*</code></td>
+<td>old Sphinx page images</td>
+<td>Svelte dashboard screenshot manifest plus orphan-branch generated assets and Zensical docs</td>
+<td>Retired; directory deleted</td>
+<td><code>make docs-screenshots</code>, <code>make docs-screenshots-check</code>, <code>make docs-link-check</code></td>
+<td>Dashboard screenshots, Zensical docs as needed</td>
+<td><code>518a</code></td>
+</tr>
+<tr>
+<td><code>conbench.png</code></td>
+<td>old root README marketing graphic</td>
+<td>reproducible Svelte dashboard screenshots published from the orphan <code>docs-screenshots</code> branch and Zensical overview pages</td>
+<td>Retired; file deleted</td>
+<td><code>make repo-hygiene-check</code>, <code>make docs-screenshots</code>, <code>make build-docs</code></td>
+<td>Dashboard screenshots, overview</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>docs/dev/</code></td>
+<td>temporary implementation notes, CI recipe drafts, and production-clone findings</td>
+<td>durable content moved into <code>docs/site</code>; active work tracked in kata</td>
+<td>Retired; directory deleted</td>
+<td><code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>Operations, CI reporting, migration, storage roadmap</td>
+<td><code>518a</code></td>
+</tr>
+<tr>
+<td><code>docs/superpowers/</code></td>
+<td>planning specs and implementation history</td>
+<td>durable content moved into <code>docs/site</code>; active work tracked in kata</td>
+<td>Retired; directory deleted</td>
+<td><code>make build-docs</code>, <code>make docs-link-check</code></td>
+<td>Contributing</td>
+<td><code>9qjz</code></td>
+</tr>
+<tr>
+<td><code>.superpowers/</code></td>
+<td>local brainstorming companion mockups</td>
+<td>ignored local scratch state only; durable content belongs in <code>docs/site</code> or kata</td>
+<td>Retired from tracked docs and runtime state</td>
+<td><code>make repo-hygiene-check</code>, <code>git status --ignored</code></td>
+<td>Contributing</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h2 id="operations-release-and-ci">Operations, Release, And CI<a class="headerlink" href="#operations-release-and-ci" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Legacy surface</th>
+<th>Purpose</th>
+<th>New path</th>
+<th>Decision</th>
+<th>Evidence needed</th>
+<th>Docs destination</th>
+<th>Ledger ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>root legacy <code>Makefile</code> Python app targets</td>
+<td>Flask dev/test/docs commands</td>
+<td>Go/web/sdk targets; <code>schema-new-migration</code> retained only for temporary Alembic schema authoring</td>
+<td>Replaced for active dev/CI; schema authoring temporary</td>
+<td><code>make build-docs</code>, <code>make python-sdk-check</code>, <code>make migration-examples-test</code>, <code>make schema-check</code>, <code>make go-test-short</code></td>
+<td>Contributing, Operations</td>
+<td><code>k24f</code></td>
+</tr>
+<tr>
+<td><code>api/openapi.yaml</code>, <code>api/openapi-3.0.yaml</code></td>
+<td>generated API contract artifacts</td>
+<td>reviewed OpenAPI contracts generated by the server-only emitter and exposed by <code>conbench openapi</code>; SDKs and web API types are generated from these files</td>
+<td>Retained active artifact, not legacy Python cruft</td>
+<td><code>make codegen-check</code>, <code>make python-sdk-check</code>, <code>make build-docs</code></td>
+<td>API and SDK, Contributing</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>.golangci.yml</code>, <code>prek.toml</code>, <code>sqlc.yaml</code>, <code>.kata.toml</code></td>
+<td>active Go lint, hook, codegen, and issue-ledger configuration</td>
+<td>Go lints and hooks, sqlc typed-query generation, and kata project ledger</td>
+<td>Retained active tooling, not Python package/lint cruft</td>
+<td><code>make go-lint-ci</code>, <code>make sqlc-check</code>, <code>kata quickstart</code></td>
+<td>Contributing</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>.gitignore</code></td>
+<td>active generated-output and local-state ignore rules</td>
+<td><code>bin/</code>, Zensical <code>site/</code>, local <code>var/</code>, root <code>.cache/</code>, ignored docs screenshots, Svelte build/dependency/test outputs, and root/scoped Python helper bytecode, cache, wheel, sdist, dist-info, egg-info, and package artifacts under scripts, SDK, migrations, and examples</td>
+<td>Retained active root hygiene; legacy Flask/Sphinx/template ignores removed</td>
+<td><code>git status --ignored</code>, <code>make build-docs</code></td>
+<td>Contributing</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>.github/workflows/actions.yml</code> legacy jobs</td>
+<td>lint/test/docs for Python app and old package tests</td>
+<td><code>.github/workflows/ci.yml</code></td>
+<td>Replaced; workflow removed</td>
+<td><code>make repo-hygiene-check</code>, <code>make workflow-shape-check</code></td>
+<td>Contributing</td>
+<td><code>k24f</code></td>
+</tr>
+<tr>
+<td><code>.github/workflows/release.yml</code> legacy package publishing</td>
+<td>PyPI releases for root Flask package and old Python packages</td>
+<td>SDK-only <code>conbench</code> package release from <code>sdk/python</code> with date/run-based versions</td>
+<td>Replaced for active releases; legacy package releases retired</td>
+<td><code>make python-sdk-check</code>, <code>make workflow-shape-check</code></td>
+<td>API and SDK, migration</td>
+<td><code>k24f</code>, <code>021q</code></td>
+</tr>
+<tr>
+<td><code>.github/workflows/publish_docs.yml</code></td>
+<td>Sphinx-era GitHub Pages workflow filename</td>
+<td>active Zensical GitHub Pages deploy workflow, triggered by the SDK release workflow and restoring screenshot assets from the orphan branch before build</td>
+<td>Retained active docs workflow; old Sphinx behavior replaced</td>
+<td><code>make build-docs</code>, <code>make workflow-shape-check</code></td>
+<td>Contributing</td>
+<td><code>9qjz</code></td>
+</tr>
+<tr>
+<td>root <code>setup.py</code>, <code>MANIFEST.in</code>, <code>requirements-webapp.txt</code>, <code>requirements-dev.txt</code></td>
+<td>Flask app package metadata and dependency sets</td>
+<td>generated SDK packaging under <code>sdk/python</code>; temporary schema deps in <code>requirements-schema.txt</code></td>
+<td>Retired; files deleted</td>
+<td><code>make python-sdk-check</code>, <code>make schema-check</code></td>
+<td>API and SDK, Operations</td>
+<td><code>k24f</code>, <code>021q</code></td>
+</tr>
+<tr>
+<td>root <code>pyproject.toml</code>, <code>uv.lock</code>, <code>uv.toml</code>, <code>setup.cfg</code>, <code>tox.ini</code>, <code>pytest.ini</code>, <code>noxfile.py</code>, <code>.coveragerc</code>, <code>.readthedocs.yml</code>, <code>.readthedocs.yaml</code>, <code>readthedocs.yml</code>, <code>readthedocs.yaml</code>, <code>requirements.txt</code>, <code>Pipfile</code>, <code>Pipfile.lock</code>, <code>poetry.toml</code>, <code>poetry.lock</code>, <code>pdm.toml</code>, <code>pdm.lock</code>, <code>hatch.toml</code>, <code>flit.ini</code>, <code>pixi.toml</code>, <code>pixi.lock</code>, <code>conftest.py</code></td>
+<td>Python app test, coverage, docs, and package-manager configuration</td>
+<td>Go/web checks plus scoped SDK, schema, and migration-example Python checks</td>
+<td>Retired; files deleted</td>
+<td><code>make repo-hygiene-check</code>, <code>make python-sdk-check</code>, <code>make migration-examples-test</code>, <code>make build-docs</code></td>
+<td>Contributing, migration</td>
+<td>none</td>
+</tr>
+<tr>
+<td>root <code>environment.yml</code>, <code>environment.yaml</code>, <code>conda-lock.yml</code>, <code>conda-lock.yaml</code>, <code>requirements.in</code>, <code>constraints.txt</code>, <code>runtime.txt</code>, <code>Procfile</code>, <code>app.json</code>, <code>.python-version</code></td>
+<td>Python app environment, resolver constraints, runtime pin, and platform app descriptors</td>
+<td>Go/web runtime uses <code>Dockerfile.server</code>, Compose, and <code>CONBENCH_*</code>; Python is scoped to SDK/schema/migration examples</td>
+<td>Retired; files deleted</td>
+<td><code>make repo-hygiene-check</code>, <code>make build-docs</code>, <code>make server-container-smoke</code></td>
+<td>Operations, migration</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>alembic.ini</code>, <code>requirements-schema.txt</code></td>
+<td>temporary Alembic schema-authoring inputs</td>
+<td>frozen-schema migration generation through <code>make schema-new-migration</code> and <code>make schema-check</code></td>
+<td>Retained only until schema ownership leaves Alembic</td>
+<td><code>make schema-check</code></td>
+<td>Operations</td>
+<td>none</td>
+</tr>
+<tr>
+<td>root <code>.flaskenv</code>, <code>.flake8</code>, <code>.isort.cfg</code>, <code>.pylintrc</code>, <code>mypy.ini</code></td>
+<td>Flask dev environment and legacy package lint/type-check configuration</td>
+<td>Go/web checks plus scoped Python checks for <code>sdk/python</code>, migration examples, and schema tooling</td>
+<td>Retired; files deleted</td>
+<td><code>make build-docs</code>, <code>make migration-examples-test</code>, <code>make python-sdk-check</code>, <code>make schema-check</code></td>
+<td>Contributing, migration</td>
+<td><code>e8s2</code></td>
+</tr>
+<tr>
+<td><code>conbench-config.yml</code>, <code>conbench-secret.yml</code></td>
+<td>root deploy-renderer key-contract templates</td>
+<td>explicit rendered ConfigMap/Secret key assertions in <code>scripts/check_go_deploy_manifests.sh</code></td>
+<td>Retired; files deleted</td>
+<td><code>make repo-hygiene-check</code>, <code>make go-deploy-manifest-check</code>, <code>make build-docs</code></td>
+<td>Operations</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>APPLICATION_NAME</code>, <code>BENCHMARKS_DATA_PUBLIC</code>, <code>DISTRIBUTION_COMMITS</code>, <code>SVS_TYPE</code>, <code>SECRET_KEY</code>, <code>REGISTRATION_KEY</code>, and pod-level <code>DB_*</code> config</td>
+<td>Flask runtime and old client/server configuration</td>
+<td><code>CONBENCH_*</code> runtime contract; the deploy renderer may use <code>DB_*</code> only as deploy inputs to render <code>CONBENCH_DB_URL</code></td>
+<td>Retired from pod runtime</td>
+<td><code>make go-deploy-manifest-check</code>, <code>make build-docs</code></td>
+<td>Operations, migration</td>
+<td><code>wh1r</code></td>
+</tr>
+<tr>
+<td><code>Dockerfile.server</code>, <code>Dockerfile.server.dockerignore</code>, <code>docker-compose.server.yml</code>, <code>docker-compose.backend-dev.yml</code></td>
+<td>active Go runtime and local Compose tooling</td>
+<td>single <code>conbench</code> binary image, local server smoke stack, and ephemeral dev Postgres</td>
+<td>Retained active Go tooling, not legacy Python Docker cruft</td>
+<td><code>make server-container-smoke</code>, <code>make go-deploy-manifest-check</code></td>
+<td>Operations</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>Dockerfile.schema</code>, <code>docker-compose.schema.yml</code></td>
+<td>temporary Alembic schema image</td>
+<td><code>Dockerfile.server</code> plus <code>docker-compose.server.yml</code> for the single <code>conbench</code> binary running <code>conbench serve</code>; schema image retained only for Alembic schema generation</td>
+<td>Replaced for app runtime; schema image temporary</td>
+<td><code>make schema-check</code>, <code>make server-container-smoke</code>, <code>make go-deploy-manifest-check</code></td>
+<td>Operations</td>
+<td><code>k24f</code>, <code>021q</code></td>
+</tr>
+<tr>
+<td><code>ci/screenshot.py</code>, <code>ci/screenshot.Dockerfile</code></td>
+<td>legacy Selenium screenshot capture</td>
+<td><code>make docs-screenshots</code>, <code>scripts/capture_docs_screenshots.sh</code>, <code>scripts/docs_screenshot_inventory.py</code>, <code>scripts/docs_screenshot_pins.py</code>, <code>scripts/docs_screenshot_evidence.py</code>, <code>scripts/publish_docs_screenshot_artifacts.sh</code>, <code>scripts/restore_docs_screenshot_artifacts.sh</code>, the orphan <code>docs-screenshots</code> branch, <code>Dockerfile.docs-screenshots</code>, <code>Dockerfile.docs-screenshots.dockerignore</code>, <code>docker-compose.docs-screenshots.yml</code>, and <code>web/docs-screenshots</code></td>
+<td>Retired; files deleted</td>
+<td><code>make docs-screenshots</code>, <code>make docs-screenshots-check</code>, <code>make workflow-shape-check</code></td>
+<td>Dashboard screenshots, contributing</td>
+<td><code>hzy8</code>, <code>3vje</code></td>
+</tr>
+<tr>
+<td><code>ci/buildinfo.json.template</code>, <code>set-build-info</code>, <code>internal/buildinfo</code></td>
+<td>unused buildinfo JSON template, generator, and unreferenced Go package</td>
+<td>image tags from <code>CHECKOUT_VERSION_STRING</code> and <code>CONBENCH_DEPLOY_VERSION</code>; future runtime versioning should use linker flags or explicit release metadata</td>
+<td>Retired; files and Makefile target deleted</td>
+<td><code>make repo-hygiene-check</code>, <code>make build-conbench-container-image</code>, <code>make go-test-short</code></td>
+<td>Operations</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>ci/minikube/*</code>, minikube Makefile targets</td>
+<td>local Kubernetes smoke harness with external postgres-operator bootstrap</td>
+<td>Docker Compose server smoke, e2e, and production Kubernetes manifest checks</td>
+<td>Retired; directory and Makefile targets deleted</td>
+<td><code>make go-deploy-manifest-check</code>, <code>make build-docs</code></td>
+<td>Operations</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>.buildkite/*</code></td>
+<td>legacy deploy/rollback pipeline entrypoints</td>
+<td><code>scripts/go_deploy_runtime.sh</code> manifest renderer plus deployment-owned CI</td>
+<td>Retired; directory deleted</td>
+<td><code>make go-deploy-manifest-check</code>, <code>make build-docs</code></td>
+<td>Operations</td>
+<td><code>k24f</code></td>
+</tr>
+<tr>
+<td><code>k8s/kube-prometheus/*</code>, <code>jsonnet-kube-prom-manifests</code></td>
+<td>deployment-local kube-prometheus/Grafana stack generation</td>
+<td>cluster-owned monitoring stack plus first-party <code>ServiceMonitor</code> for <code>/metrics</code></td>
+<td>Retired; directory and Makefile target deleted</td>
+<td><code>make repo-hygiene-check</code>, <code>make go-deploy-manifest-check</code>, <code>make build-docs</code></td>
+<td>Operations</td>
+<td>none</td>
+</tr>
+<tr>
+<td>root <code>ci/</code> tree</td>
+<td>legacy runtime scripts, screenshot helpers, minikube harness, buildinfo generator, and Flask/BMRT dashboard plumbing</td>
+<td>active checks live in <code>.github/workflows</code>, <code>scripts/</code>, Docker Compose, and <code>k8s/</code>; no root <code>ci/</code> tree is tracked</td>
+<td>Retired; directory deleted</td>
+<td><code>make workflow-shape-check</code>, <code>make go-deploy-manifest-check</code></td>
+<td>Operations</td>
+<td><code>k24f</code></td>
+</tr>
+<tr>
+<td><code>conbench/</code> Flask app package</td>
+<td>Flask API, Jinja dashboard, legacy ORM/entities, and old Python tests</td>
+<td>Single <code>conbench</code> binary with <code>conbench serve</code>, Svelte dashboard, sqlc store, generated SDK, migration docs</td>
+<td>Retired; package deleted</td>
+<td><code>make go-test-short</code>, <code>make schema-check</code>, <code>make build-docs</code></td>
+<td>API, dashboard, migration</td>
+<td><code>021q</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="schema-and-reference-assets">Schema And Reference Assets<a class="headerlink" href="#schema-and-reference-assets" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Legacy surface</th>
+<th>Purpose</th>
+<th>New path</th>
+<th>Decision</th>
+<th>Evidence needed</th>
+<th>Docs destination</th>
+<th>Ledger ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>migrations/</code></td>
+<td>frozen schema source of truth</td>
+<td>retained until schema ownership changes</td>
+<td>Schema/reference</td>
+<td><code>make schema-check</code></td>
+<td>Operations</td>
+<td><code>xfcd</code></td>
+</tr>
+<tr>
+<td><code>internal/db/schema.sql</code></td>
+<td>sqlc input</td>
+<td>generated from schema</td>
+<td>Schema/reference</td>
+<td><code>make sqlc-check</code></td>
+<td>Contributing</td>
+<td><code>xfcd</code></td>
+</tr>
+<tr>
+<td>golden data</td>
+<td>verify Go ports of legacy analysis</td>
+<td>checked-in reference corpus under Go package testdata</td>
+<td>Schema/reference</td>
+<td><code>make go-test-short</code></td>
+<td>Regression analysis</td>
+<td><code>xfcd</code></td>
+</tr>
+<tr>
+<td>migration examples and <code>conbench.migration</code></td>
+<td>help users move Python workloads</td>
+<td>retained while useful</td>
+<td>Temporary</td>
+<td><code>make migration-examples-test</code>, <code>make python-sdk-check</code>, <code>make build-docs</code></td>
+<td>Python migration</td>
+<td><code>xfcd</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="reference-asset-retention">Reference Asset Retention<a class="headerlink" href="#reference-asset-retention" title="Permanent link">&para;</a></h2>
+<p>These assets are not runtime compatibility shims. They are retained because the
+new Go implementation still uses them as schema, parity, fixture, or migration
+evidence.</p>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Owner</th>
+<th>Purpose</th>
+<th>Removal trigger</th>
+<th>Verification gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>migrations/</code></td>
+<td>backend storage/schema owner</td>
+<td>Frozen production schema provenance and schema-generation input</td>
+<td>A new schema-ownership decision replaces Alembic as the source of truth</td>
+<td><code>make schema-check</code></td>
+</tr>
+<tr>
+<td><code>internal/db/schema.sql</code> and sqlc output</td>
+<td>backend storage owner</td>
+<td>Checked-in SQL contract consumed by sqlc and Go queries</td>
+<td>Only changes through schema/codegen drift workflow</td>
+<td><code>make sqlc-check</code>, <code>make codegen-check</code></td>
+</tr>
+<tr>
+<td><code>internal/stats/testdata/*</code></td>
+<td>stats/analysis owner</td>
+<td>Golden inputs and outputs for SVS, rolling stats, z-scores, verdicts, and fingerprints</td>
+<td>Replaced by an equal-or-better checked-in reference corpus</td>
+<td><code>make go-test-short</code></td>
+</tr>
+<tr>
+<td><code>internal/units/testdata/*</code></td>
+<td>units owner</td>
+<td>Golden unit registry and conversion behavior from the legacy Python implementation</td>
+<td>Replaced by an equal-or-better checked-in reference corpus</td>
+<td><code>make go-test-short</code></td>
+</tr>
+<tr>
+<td><code>internal/hardware/testdata/*</code></td>
+<td>hardware owner</td>
+<td>Golden machine and cluster hash behavior from the legacy Python implementation</td>
+<td>Replaced by an equal-or-better checked-in reference corpus</td>
+<td><code>make go-test-short</code></td>
+</tr>
+<tr>
+<td><code>internal/commit/githubtest/testdata/*</code></td>
+<td>GitHub metadata owner</td>
+<td>Deterministic GitHub API fixtures for commit/provider tests</td>
+<td>Tests no longer depend on copied legacy fixtures or have equivalent Go-native fixtures</td>
+<td><code>make go-test-short</code></td>
+</tr>
+<tr>
+<td><code>examples/migration/*</code></td>
+<td>migration/docs owner</td>
+<td>Runnable Python-to-CLI migration recipe for benchmark authors</td>
+<td>Public migration docs no longer need Python examples, or a narrower supported helper supersedes them</td>
+<td><code>make migration-examples-test</code>, <code>make build-docs</code></td>
+</tr>
+<tr>
+<td>kata issue ledger</td>
+<td>project memory owner</td>
+<td>Active planning and issue history for the rewrite</td>
+<td>Replace only if the project adopts a different issue ledger</td>
+<td><code>kata quickstart</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="deletion-rule">Deletion Rule<a class="headerlink" href="#deletion-rule" title="Permanent link">&para;</a></h2>
+<p>Do not delete a row's legacy files until:</p>
+<ol>
+<li>the decision is no longer temporary,</li>
+<li>missing product work is implemented or intentionally retired,</li>
+<li>verification evidence exists,</li>
+<li>the public docs tell users what to do,</li>
+<li>active CI, package, release, Docker, and deployment paths no longer reference
+   the deleted surface.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["navigation.instant","navigation.instant.progress","navigation.path","navigation.sections"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1646 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Language-independent continuous benchmarking with a Go API, Svelte dashboard, CLI-first writes, and generated SDKs.">
+      
+      
+        <meta name="author" content="Conbench maintainers">
+      
+      
+        <link rel="canonical" href="https://wesm.github.io/conbench-tmp/dashboard-screenshots/">
+      
+      
+        <link rel="prev" href="../browsing-and-comparing/">
+      
+      
+        <link rel="next" href="../regression-analysis/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.45">
+    
+    
+      
+        <title>Dashboard Screenshots - Conbench</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.fba56155.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dashboard-screenshots" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="Conbench" class="md-header__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Conbench
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dashboard Screenshots
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Conbench" class="md-nav__button md-logo" aria-label="Conbench" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Conbench
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Get started
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Get started
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Quickstart
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CLI Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Concepts
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../submitting-results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Submitting Results
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CI Reporting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Using Conbench
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Using Conbench
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browsing-and-comparing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Browsing And Comparing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dashboard Screenshots
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dashboard Screenshots
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Evidence Inventory
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-clone-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Production-Clone Series
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recent-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Recent Runs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#series-browse" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Series Browse
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trend-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Trend Detail
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Result Detail
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Results List
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Run Detail
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Batch Detail
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compare" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Compare
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        CI Report
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Account
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regression-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Regression Analysis
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Alerting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-and-sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API And SDK
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-and-tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Authentication And Tokens
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Migration
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/python-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migrating From The Legacy Python Conbench App
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/python-legacy-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Python Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/legacy-parity-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Parity Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/deprecation-notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Package Deprecation Notices
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/legacy-burndown-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Legacy Burndown Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Operations
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Operations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prod-clone-compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Production-Clone Compatibility
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Storage Roadmap
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contributing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Evidence Inventory
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-clone-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Production-Clone Series
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recent-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Recent Runs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#series-browse" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Series Browse
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trend-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Trend Detail
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Result Detail
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Results List
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Run Detail
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Batch Detail
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compare" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Compare
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        CI Report
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Account
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="./.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="../browsing-and-comparing/" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Using Conbench
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="dashboard-screenshots">Dashboard Screenshots<a class="headerlink" href="#dashboard-screenshots" title="Permanent link">&para;</a></h1>
+<p>These screenshots are generated from two review sources:</p>
+<ul>
+<li>the deterministic demo database used by <code>make docs-screenshots</code>, which covers
+  the main dashboard routes without private data or hand-picked local state;</li>
+<li>a production-clone capture from Apache Arrow series data, used as an
+  open-source example of a real series browsing workflow.</li>
+</ul>
+<p>The PNGs and evidence JSON are generated artifacts. They are not committed to
+the main development branch. The current reviewed image set lives on the orphan
+<code>docs-screenshots</code> branch under <code>latest/</code>; CI also uploads the same deterministic
+dashboard captures as a <code>conbench-dashboard-screenshots</code> artifact for each run.
+The GitHub Pages workflow restores the orphan-branch assets before running
+Zensical so the published docs contain real image files without bloating this
+branch history.</p>
+<p>Refresh the deterministic dashboard captures from a clean checkout with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>make<span class="w"> </span>docs-screenshots
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>make<span class="w"> </span>build-docs
+</span></code></pre></div>
+<p>The Docker-based screenshot target starts <code>docker-compose.server.yml</code> plus
+<code>docker-compose.docs-screenshots.yml</code> under an isolated Compose project,
+initializes the schema, seeds demo benchmark data, runs the server in read-only
+product mode, captures the browser views from a pinned Playwright container,
+writes ignored files under <code>docs/site/assets/screenshots/</code> by default, writes
+<code>dashboard-screenshots-evidence.json</code>, verifies the generated artifact
+directory, and tears the stack down. The expected screenshot inventory and
+viewport sizes live in <code>web/docs-screenshots/screenshots.json</code>.</p>
+<p><code>make docs-screenshots-check</code> always verifies the manifest, this page, the
+Playwright pin, and evidence-checking code. When
+<code>CONBENCH_DOCS_SCREENSHOT_OUT_DIR</code> is set, or when local screenshot assets exist
+under <code>docs/site/assets/screenshots/</code>, it also verifies every checked PNG,
+viewport dimension, nonblank image check, and evidence digest. Before capture,
+the target server's <code>/api/auth/capabilities</code> response must show
+<code>auth_disabled=false</code> and <code>can_write_results=false</code>; docs screenshots represent
+the public read-only product, not a local write-enabled review mode. For the
+server configuration, that means <code>CONBENCH_AUTH_DISABLED=false</code>.</p>
+<p>Local Docker service origins are normalized to <code>https://conbench.example</code>
+unless <code>CONBENCH_DOCS_SCREENSHOT_PUBLIC_BASE_URL</code> is set. The Playwright version
+in the Docker image is checked against the exact <code>@playwright/test</code> pin in
+<code>web/package.json</code>. The deterministic harness does not connect to production
+data.</p>
+<p>CI runs the same capture path, checks the generated artifact directory before
+upload, and on push publishes the latest deterministic dashboard PNGs plus
+<code>dashboard-screenshots-evidence.json</code> to the orphan <code>docs-screenshots</code> branch.
+That publish step preserves non-dashboard extras already present on the branch,
+including production-clone screenshots.</p>
+<p>The Playwright capture test also checks the page state before it writes an
+image:</p>
+<ul>
+<li>chart canvases must be painted, not blank;</li>
+<li>desktop pages must not produce document-level horizontal overflow;</li>
+<li>mobile primary navigation must remain visible within the viewport;</li>
+<li>volatile generated result IDs are normalized out of generated dashboard
+  screenshots;</li>
+<li>internal screenshot-server origins must not appear in the page text;</li>
+<li>checked PNGs must contain real rendered content, not a single flat color.</li>
+</ul>
+<p>Those checks are intentionally lightweight. They do not replace product review,
+but they make the documentation screenshots reproducible evidence of the current
+UI instead of hand-picked local captures.</p>
+<h2 id="evidence-inventory">Evidence Inventory<a class="headerlink" href="#evidence-inventory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>View</th>
+<th>Route captured</th>
+<th>What this screenshot proves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recent runs</td>
+<td><code>/</code></td>
+<td>Start from recent run activity and jump into CI, result, or series workflows.</td>
+</tr>
+<tr>
+<td>Series browse</td>
+<td><code>/series?q=demo-benchmark</code></td>
+<td>Browse benchmark families, filters, status, and production-shaped identifiers.</td>
+</tr>
+<tr>
+<td>Trend detail</td>
+<td><code>/series/:fingerprint?range=all</code></td>
+<td>Inspect history, charted trends, and sample rows for one series.</td>
+</tr>
+<tr>
+<td>Result detail</td>
+<td><code>/results/:id</code></td>
+<td>Inspect one benchmark result, measurement, metadata, and read-only actions.</td>
+</tr>
+<tr>
+<td>Results list</td>
+<td><code>/results?run_id=...</code></td>
+<td>Browse submitted benchmark results, filter by run or batch, and jump into detail or trends.</td>
+</tr>
+<tr>
+<td>Run detail</td>
+<td><code>/runs/:run_id</code></td>
+<td>Inspect one run_id, its result rows, CI report link, batches, and series links.</td>
+</tr>
+<tr>
+<td>Batch detail</td>
+<td><code>/batches/:batch_id</code></td>
+<td>Inspect one batch_id across runs, CI reports, result rows, and series links.</td>
+</tr>
+<tr>
+<td>Compare</td>
+<td><code>/compare?baseline=:id&amp;contender=:id</code></td>
+<td>Compare two results with pairwise and lookback diagnostics.</td>
+</tr>
+<tr>
+<td>CI report</td>
+<td><code>/ci/report?repository=...&amp;commit_sha=...&amp;run_ids=...</code></td>
+<td>Review PR/CI regression status, filters, investigation queue, and row verdicts.</td>
+</tr>
+<tr>
+<td>Account</td>
+<td><code>/account</code></td>
+<td>Reach session identity, login, API token management, and alert-rule management surfaces.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="production-clone-series">Production-Clone Series<a class="headerlink" href="#production-clone-series" title="Permanent link">&para;</a></h2>
+<p>This image is captured from the production-clone server against Apache Arrow
+benchmark data. It is separate from the deterministic CI harness because the
+clone data is only a temporary review source while this branch is prepared.</p>
+<p><img alt="Apache Arrow series trend from the production clone" src="../assets/screenshots/prod-clone-series-arrow-toucharea.png" /></p>
+<h2 id="recent-runs">Recent Runs<a class="headerlink" href="#recent-runs" title="Permanent link">&para;</a></h2>
+<p><img alt="Recent runs dashboard" src="../assets/screenshots/dashboard-home-desktop.png" /></p>
+<p><img alt="Recent runs mobile dashboard" src="../assets/screenshots/dashboard-home-mobile.png" /></p>
+<h2 id="series-browse">Series Browse<a class="headerlink" href="#series-browse" title="Permanent link">&para;</a></h2>
+<p><img alt="Series browse desktop" src="../assets/screenshots/dashboard-series-desktop.png" /></p>
+<p><img alt="Series browse mobile" src="../assets/screenshots/dashboard-series-mobile.png" /></p>
+<h2 id="trend-detail">Trend Detail<a class="headerlink" href="#trend-detail" title="Permanent link">&para;</a></h2>
+<p><img alt="Trend detail desktop" src="../assets/screenshots/dashboard-trend-desktop.png" /></p>
+<p><img alt="Trend detail mobile" src="../assets/screenshots/dashboard-trend-mobile.png" /></p>
+<h2 id="result-detail">Result Detail<a class="headerlink" href="#result-detail" title="Permanent link">&para;</a></h2>
+<p><img alt="Result detail" src="../assets/screenshots/dashboard-result-desktop.png" /></p>
+<p><img alt="Result detail mobile" src="../assets/screenshots/dashboard-result-mobile.png" /></p>
+<h2 id="results-list">Results List<a class="headerlink" href="#results-list" title="Permanent link">&para;</a></h2>
+<p><img alt="Results list dashboard" src="../assets/screenshots/dashboard-results-desktop.png" /></p>
+<p><img alt="Results list mobile dashboard" src="../assets/screenshots/dashboard-results-mobile.png" /></p>
+<h2 id="run-detail">Run Detail<a class="headerlink" href="#run-detail" title="Permanent link">&para;</a></h2>
+<p><img alt="Run detail dashboard" src="../assets/screenshots/dashboard-run-desktop.png" /></p>
+<p><img alt="Run detail mobile dashboard" src="../assets/screenshots/dashboard-run-mobile.png" /></p>
+<h2 id="batch-detail">Batch Detail<a class="headerlink" href="#batch-detail" title="Permanent link">&para;</a></h2>
+<p><img alt="Batch detail dashboard" src="../assets/screenshots/dashboard-batch-desktop.png" /></p>
+<p><img alt="Batch detail mobile dashboard" src="../assets/screenshots/dashboard-batch-mobile.png" /></p>
+<h2 id="compare">Compare<a class="headerlink" href="#compare" title="Permanent link">&para;</a></h2>
+<p><img alt="Compare dashboard" src="../assets/screenshots/dashboard-compare-desktop.png" /></p>
+<p><img alt="Compare mobile dashboard" src="../assets/screenshots/dashboard-compare-mobile.png" /></p>
+<h2 id="ci-report">CI Report<a class="headerlink" href="#ci-report" title="Permanent link">&para;</a></h2>
+<p><img alt="CI report dashboard" src="../assets/screenshots/dashboard-ci-report-desktop.png" /></p>
+<p><img alt="CI report mobile dashboard" src="../assets/screenshots/dashboard-ci-report-mobile.png" /></p>
+<h2 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h2>
+<p><img alt="Account dashboard" src="../assets/screenshots/dashboard-account-desktop.png" /></p>
+<p><img alt="Account mobile dashboard" src="../assets/screenshots/dashboard-account-mobile.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant.progress","navigation.path","navigation.sections"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      
+    
+  </body>
+</html>
