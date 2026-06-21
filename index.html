@@ -296,6 +296,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#migrating-from-older-conbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Migrating From Older Conbench
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1107,6 +1118,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#migrating-from-older-conbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Migrating From Older Conbench
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1133,30 +1155,34 @@
 <h1 id="conbench">Conbench<a class="headerlink" href="#conbench" title="Permanent link">&para;</a></h1>
 <p>Conbench is a continuous benchmarking system for teams that need performance
 data to be easy to submit, inspect, compare, and act on.</p>
-<p>The current Conbench system provides:</p>
+<p>Benchmark projects send Conbench structured result JSON. Conbench stores those
+results, groups comparable measurements into history series, and helps people
+answer the questions that matter during development:</p>
 <ul>
-<li>a Go server exposes a typed API over the existing Postgres schema,</li>
-<li>a Svelte application provides the dashboard,</li>
-<li>the <code>conbench</code> CLI is the supported write and CI workflow,</li>
-<li>generated SDKs provide typed read and automation clients,</li>
-<li>the legacy Flask application and old Python client stack are deleted from the
-  maintained implementation.</li>
+<li>what just ran,</li>
+<li>whether the run published the expected measurements,</li>
+<li>which benchmark series changed,</li>
+<li>whether a change is statistically meaningful,</li>
+<li>where to inspect the raw result, history, commit, and machine context.</li>
 </ul>
-<p>Conbench keeps existing benchmark data by continuing to use the frozen
-Postgres schema. It does not keep the old API and Python package contracts as
-compatibility surfaces. Migration is handled through documented recipes, the Go
-CLI, generated SDKs, and targeted helpers only where real migrations prove they
-are needed.</p>
+<p>The main surfaces are:</p>
+<ul>
+<li>a dashboard for browsing runs, results, series, trends, comparisons, and CI
+  reports,</li>
+<li>the <code>conbench</code> CLI for submitting results and generating CI diagnostics,</li>
+<li>OpenAPI and generated SDKs for read automation,</li>
+<li>user-owned API tokens for CI and scripts,</li>
+<li>server-side alert rules for scheduled regression monitoring.</li>
+</ul>
 <h2 id="what-to-do-next">What to do next<a class="headerlink" href="#what-to-do-next" title="Permanent link">&para;</a></h2>
 <ul>
 <li>New users: start with the <a href="quickstart/">quickstart</a>.</li>
-<li>CLI users: use the <a href="cli-reference/">CLI reference</a>.</li>
 <li>Benchmark authors: read <a href="submitting-results/">submitting results</a>.</li>
 <li>CI owners: wire up <a href="ci-reporting/">CI reporting</a>.</li>
-<li>Dashboard users: review the <a href="dashboard-screenshots/">dashboard screenshots</a>.</li>
-<li>Existing Conbench users: follow the <a href="migration/python-app/">Python app migration guide</a>
-  and <a href="migration/legacy-parity-roadmap/">legacy parity roadmap</a>.</li>
-<li>Package maintainers: use the <a href="migration/deprecation-notices/">legacy deprecation notices</a>.</li>
+<li>Dashboard users: read <a href="browsing-and-comparing/">browsing and comparing</a> or
+  review the <a href="dashboard-screenshots/">dashboard screenshots</a>.</li>
+<li>CLI users: use the <a href="cli-reference/">CLI reference</a>.</li>
+<li>Automation authors: use <a href="api-and-sdk/">API and SDK</a>.</li>
 <li>Operators: review <a href="operations/">operations</a>.</li>
 </ul>
 <h2 id="supported-surfaces">Supported surfaces<a class="headerlink" href="#supported-surfaces" title="Permanent link">&para;</a></h2>
@@ -1196,18 +1222,16 @@ are needed.</p>
 <td>Authenticate automation</td>
 <td>User-owned API tokens</td>
 </tr>
-<tr>
-<td>Migrate legacy Python benchmark code</td>
-<td>JSON payloads plus Go CLI submission</td>
-</tr>
 </tbody>
 </table>
-<p>The old Flask app, Jinja pages, password-login Python HTTP clients, and the
-<code>benchalerts</code> client package are retired surfaces, not ongoing maintenance
-targets.
-Generic webhook, Slack, GitHub Check, GitHub commit-comment, and email alert
-delivery are server-owned through the durable alert outbox. They are not a
-reason to retain legacy Python clients.</p>
+<h2 id="migrating-from-older-conbench">Migrating From Older Conbench<a class="headerlink" href="#migrating-from-older-conbench" title="Permanent link">&para;</a></h2>
+<p>If you already run a Python/Flask Conbench deployment or publish results through
+the older Python packages, start with the
+<a href="migration/python-app/">Python app migration guide</a>. The
+<a href="migration/legacy-parity-roadmap/">legacy parity roadmap</a> explains what is
+replaced, retired, or future product work. Package maintainers should use the
+<a href="migration/deprecation-notices/">legacy deprecation notices</a> when updating
+old READMEs, PyPI pages, or release notes.</p>
 
 
 

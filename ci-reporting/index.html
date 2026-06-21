@@ -540,10 +540,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#benchalerts-migration" class="md-nav__link">
+  <a href="#scheduled-alerts" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Benchalerts Migration
+        Scheduled Alerts
       </span>
     </span>
   </a>
@@ -1233,10 +1233,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#benchalerts-migration" class="md-nav__link">
+  <a href="#scheduled-alerts" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Benchalerts Migration
+        Scheduled Alerts
       </span>
     </span>
   </a>
@@ -1361,10 +1361,10 @@ arguments; <code>--token</code> remains available for explicit local overrides.<
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="no">fi</span>
 </span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="no">exit &quot;$report_status&quot;</span>
 </span></code></pre></div>
-<p>The shape-tolerant <code>jq</code> expression is useful while migrating old benchmark
-jobs. The submit step still expects one Conbench result object per file, so
-array-shaped legacy output should be split before calling <code>conbench results
-submit</code>.</p>
+<p>The shape-tolerant <code>jq</code> expression handles either a single result file or files
+containing arrays during local experimentation. The submit step still expects
+one Conbench result object per file, so split array-shaped output before calling
+<code>conbench results submit</code>.</p>
 <h2 id="selector-modes">Selector Modes<a class="headerlink" href="#selector-modes" title="Permanent link">&para;</a></h2>
 <p>Use commit-wide mode when you want the simplest report:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>conbench<span class="w"> </span>ci<span class="w"> </span>report<span class="w"> </span><span class="se">\</span>
@@ -1390,8 +1390,7 @@ baseline run IDs:</p>
 </span></code></pre></div>
 <p><code>--baseline-run-ids</code> is paired by position with <code>--run-ids</code>, so both lists must
 have the same count. Do not combine it with <code>--baseline</code>; automatic baseline
-selection and explicit run comparison are separate modes. This is the supported
-replacement for the legacy run-comparison UI/API shape.</p>
+selection and explicit run comparison are separate modes.</p>
 <h2 id="baseline-modes">Baseline Modes<a class="headerlink" href="#baseline-modes" title="Permanent link">&para;</a></h2>
 <p>Automatic baseline selection is controlled by <code>--baseline</code>:</p>
 <table>
@@ -1491,13 +1490,11 @@ machines.</p>
 </ul>
 <p>Always publish the Markdown summary when exit code <code>1</code> is possible. That is the
 case where the diagnostic is most useful.</p>
-<h2 id="benchalerts-migration">Benchalerts Migration<a class="headerlink" href="#benchalerts-migration" title="Permanent link">&para;</a></h2>
-<p>For synchronous PR diagnostics, <code>conbench ci report</code> replaces the client-side
-<code>benchalerts</code> pipeline. Run it after result submission, let the process exit code
-drive CI status, and publish the Markdown output through the CI system.</p>
-<p>Scheduled alert state is now server-owned: create alert rules through the API and
-run <code>conbench admin alerts evaluate</code> from operations automation. The evaluator
-uses the same CI report comparison semantics and records open/resolve events in
+<h2 id="scheduled-alerts">Scheduled Alerts<a class="headerlink" href="#scheduled-alerts" title="Permanent link">&para;</a></h2>
+<p>Use <code>conbench ci report</code> for synchronous pull request diagnostics. For scheduled
+monitoring, create alert rules through the API or account dashboard and run
+<code>conbench admin alerts evaluate</code> from operations automation. The evaluator uses
+the same CI report comparison semantics and records open/resolve events in
 Conbench.</p>
 <p>For scheduled notifications, run <code>conbench admin alerts deliver</code> with
 <code>CONBENCH_ALERT_WEBHOOK_URL</code> or <code>--webhook-url</code> for a generic webhook, or with
@@ -1511,9 +1508,8 @@ repository and token configuration. For email, use <code>--channel email</code> 
 <code>CONBENCH_ALERT_EMAIL_TO</code>.
 Delivery uses a durable outbox over stored alert events, so retries do not
 duplicate already delivered events.</p>
-<p>Email delivery is server-owned over the same outbox, not a reason to preserve
-the legacy <code>benchalerts</code> Python package. See <a href="../alerting/">Alerting</a> for the
-canonical delivery model and current non-goals.</p>
+<p>See <a href="../alerting/">Alerting</a> for the canonical delivery model and current
+non-goals.</p>
 
 
 

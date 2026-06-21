@@ -709,6 +709,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#migration-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Migration Notes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1177,6 +1188,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#migration-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Migration Notes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1264,17 +1286,14 @@ Generated clients are artifacts of that contract.</p>
 environment:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>./sdk/python
 </span></code></pre></div>
-<p>Do not install the retired Flask application package and the new generated SDK
-into the same Python environment. They use the same <code>conbench</code> import name for
-different purposes.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench.api.default</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_series</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://conbench.example.com&quot;</span><span class="p">)</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">page</span> <span class="o">=</span> <span class="n">list_series</span><span class="o">.</span><span class="n">sync</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </span></code></pre></div>
-<p>List operations expose the same filters as the HTTP API. For example, a legacy
-batch page read becomes a filtered result-list call:</p>
+<p>List operations expose the same filters as the HTTP API. For example, use the
+result-list operation to inspect benchmark results for one batch:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench.api.default</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_benchmark_results</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">page</span> <span class="o">=</span> <span class="n">list_benchmark_results</span><span class="o">.</span><span class="n">sync</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> <span class="n">batch_id</span><span class="o">=</span><span class="n">batch_id</span><span class="p">)</span>
@@ -1282,10 +1301,9 @@ batch page read becomes a filtered result-list call:</p>
 <p>The SDK is intended for reads and automation. Writes should use the Go CLI so
 payload validation, token handling, glob behavior, and CI-report integration
 stay consistent.</p>
-<p>For migration jobs that already construct Python dictionaries, the SDK also
-ships a small hand-written <code>conbench.migration</code> helper. It writes object-per-file
-payload JSON and invokes the Go CLI without exposing tokens in helper-returned
-errors:</p>
+<p>For jobs that already construct Python dictionaries, the SDK also ships a small
+hand-written <code>conbench.migration</code> helper. It writes object-per-file payload JSON
+and invokes the Go CLI without exposing tokens in helper-returned errors:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">conbench.migration</span><span class="w"> </span><span class="kn">import</span> <span class="n">submit_results</span><span class="p">,</span> <span class="n">write_result_payloads</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">files</span> <span class="o">=</span> <span class="n">write_result_payloads</span><span class="p">(</span><span class="n">payloads</span><span class="p">,</span> <span class="s2">&quot;bench-results&quot;</span><span class="p">)</span>
@@ -1295,25 +1313,12 @@ errors:</p>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">,</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>This helper is intentionally not a source-compatible <code>benchadapt</code> or
-<code>benchconnect</code> replacement. It keeps the JSON-file and CLI boundary explicit.
-Each call removes older helper-owned files with the same prefix before writing
+<p>Each call removes older helper-owned files with the same prefix before writing
 the current payload set, which prevents a later <code>bench-results/*.json</code> submit
 glob from resending stale results.</p>
-<p>For package-by-package migration guidance, read the
-<a href="../migration/python-app/">Python app migration guide</a>. For a runnable example
-that converts saved Google Benchmark JSON into CLI-submitted payload files, see
-<a href="https://github.com/conbench/conbench/blob/main/examples/migration/gbench_to_cli_submit.py"><code>examples/migration/gbench_to_cli_submit.py</code></a>.</p>
-<p>Migration reference pages:</p>
-<ul>
-<li><a href="../migration/python-app/">Python app migration guide</a></li>
-<li><a href="../migration/deprecation-notices/">legacy package deprecation notices</a></li>
-<li><a href="../migration/legacy-parity-roadmap/">legacy parity roadmap</a></li>
-</ul>
 <h2 id="low-level-objects">Low-Level Objects<a class="headerlink" href="#low-level-objects" title="Permanent link">&para;</a></h2>
-<p>The new API does not preserve the old standalone commit, context, hardware, and
-info catalog routes. Those rows are implementation details of benchmark results
-and series:</p>
+<p>Commit, context, hardware, and info rows are exposed through the product
+responses that use them:</p>
 <ul>
 <li>result detail responses include commit, context, info, optional info,
   validation, change annotations, hardware data, and raw measurement arrays,</li>
@@ -1323,22 +1328,14 @@ and series:</p>
 <li>CI reports expose commit and hardware metadata alongside comparisons.</li>
 </ul>
 <p>For automation, query the product endpoint that owns the workflow instead of
-joining low-level object catalogs client-side. If operators need a true
-admin/debug browser later, it should be designed as an authenticated operator
-surface, not as Flask-compatible <code>/api/commits</code>, <code>/api/contexts</code>,
-<code>/api/hardware</code>, or <code>/api/info</code> aliases.</p>
+joining low-level object catalogs client-side.</p>
 <h2 id="alert-apis">Alert APIs<a class="headerlink" href="#alert-apis" title="Permanent link">&para;</a></h2>
 <p>The alert-rule APIs are generated into every SDK from OpenAPI, but they require a
 user principal: a browser session or user-owned API token. The static operator
 token is not a user and cannot manage rules.</p>
 <p>Use the SDK for rule management and event inspection when needed. Evaluation is
 an operations concern and runs through <code>conbench admin alerts evaluate</code>, not
-through a legacy Python alerting client.</p>
-<p>There is no supported <code>conbench_client</code> import in the new system. During the
-transition, do not install the retired Flask application package and the new
-generated SDK into the same Python environment, because both use the <code>conbench</code>
-import name for different purposes. Benchmark jobs that only submit results do
-not need the Python SDK at all; they can emit JSON files and call the Go CLI.</p>
+through the SDK.</p>
 <h2 id="go-and-typescript-clients">Go And TypeScript Clients<a class="headerlink" href="#go-and-typescript-clients" title="Permanent link">&para;</a></h2>
 <p>The repository also generates:</p>
 <ul>
@@ -1351,6 +1348,26 @@ not need the Python SDK at all; they can emit JSON files and call the Go CLI.</p
 <p>Verify generated artifacts are clean with:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>make<span class="w"> </span>codegen-check
 </span></code></pre></div>
+<h2 id="migration-notes">Migration Notes<a class="headerlink" href="#migration-notes" title="Permanent link">&para;</a></h2>
+<p>For package-by-package migration guidance, read the
+<a href="../migration/python-app/">Python app migration guide</a>. For a runnable example
+that converts saved Google Benchmark JSON into CLI-submitted payload files, see
+<a href="https://github.com/conbench/conbench/blob/main/examples/migration/gbench_to_cli_submit.py"><code>examples/migration/gbench_to_cli_submit.py</code></a>.</p>
+<p>Migration reference pages:</p>
+<ul>
+<li><a href="../migration/python-app/">Python app migration guide</a></li>
+<li><a href="../migration/deprecation-notices/">legacy package deprecation notices</a></li>
+<li><a href="../migration/legacy-parity-roadmap/">legacy parity roadmap</a></li>
+</ul>
+<p>The generated Python SDK distribution and import package are named <code>conbench</code>.
+During a Python-app migration, do not install the retired Flask application
+package and the new generated SDK into the same Python environment, because both
+use that import name for different purposes. There is no supported
+<code>conbench_client</code> import. Benchmark jobs that only submit results do not need
+the Python SDK at all; they can emit JSON files and call the Go CLI.</p>
+<p>The <code>conbench.migration</code> helper is intentionally not a source-compatible
+<code>benchadapt</code> or <code>benchconnect</code> replacement. It keeps the JSON-file and CLI
+boundary explicit.</p>
 
 
 

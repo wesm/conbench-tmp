@@ -1312,10 +1312,9 @@ uses series pages for trend inspection and regression context.</p>
 stream. Project health and regression summaries count series, not raw result
 rows, so retries and multi-file submissions do not inflate the headline.</p>
 <h2 id="runs-and-batches">Runs And Batches<a class="headerlink" href="#runs-and-batches" title="Permanent link">&para;</a></h2>
-<p>Runs and batches are submitted metadata, not separate product objects in the
-new system. Use <code>run_id</code> to group one benchmark attempt, <code>run_tags</code> to attach
-workflow metadata, and <code>batch_id</code> when a benchmark suite needs a wider grouping
-across related runs.</p>
+<p>Runs and batches are submitted metadata. Use <code>run_id</code> to group one benchmark
+attempt, <code>run_tags</code> to attach workflow metadata, and <code>batch_id</code> when a
+benchmark suite needs a wider grouping across related runs.</p>
 <p>To inspect a run or batch, filter benchmark results by <code>run_id</code> or <code>batch_id</code>.
 To compare a run against an inferred or explicit baseline, use a CI report with
 <code>run_ids</code> and, when needed, <code>baseline_run_ids</code>.</p>

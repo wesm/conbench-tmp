@@ -1378,9 +1378,8 @@
                   
 
 <h1 id="operations">Operations<a class="headerlink" href="#operations" title="Permanent link">&para;</a></h1>
-<p>The new Conbench runtime is a Go server with an embedded Svelte application and
-a Postgres database. The legacy Flask/Gunicorn runtime source is deleted from
-this branch.</p>
+<p>Conbench runs as a Go server with an embedded Svelte application and a Postgres
+database.</p>
 <h2 id="runtime-contract">Runtime Contract<a class="headerlink" href="#runtime-contract" title="Permanent link">&para;</a></h2>
 <p>The server is configured through environment variables. Treat
 <code>internal/serverapp/app.go</code> and the <code>conbench serve</code> command as the source of
@@ -1488,9 +1487,9 @@ other hosts use secure cookies.</p>
 <p>Build and smoke-test the Go server container:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>make<span class="w"> </span>server-container-smoke
 </span></code></pre></div>
-<p>The new runtime image is <code>Dockerfile.server</code>. It builds the Svelte app, embeds
-it in the single <code>conbench</code> binary, and runs <code>conbench serve</code> on container port
-8080. It does not install the legacy Flask application or Python package stack.</p>
+<p>The runtime image is <code>Dockerfile.server</code>. It builds the Svelte app, embeds it
+in the single <code>conbench</code> binary, and runs <code>conbench serve</code> on container port
+8080.</p>
 <p>For local manual testing:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>make<span class="w"> </span>server-container-up
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>make<span class="w"> </span>server-container-down

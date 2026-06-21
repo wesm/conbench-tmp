@@ -1270,20 +1270,19 @@
 <h1 id="browsing-and-comparing">Browsing And Comparing<a class="headerlink" href="#browsing-and-comparing" title="Permanent link">&para;</a></h1>
 <p>The Svelte dashboard is the supported web interface.</p>
 <h2 id="series-browse">Series Browse<a class="headerlink" href="#series-browse" title="Permanent link">&para;</a></h2>
-<p>The home page lists recent benchmark runs. Use it to answer the first legacy
-landing-page question: what just ran, how much data did it publish, did any
-results error, and where is the CI report or a sample result?</p>
+<p>The home page summarizes recent benchmark activity. Use it to answer: what just
+ran, how much data did it publish, did any results error, and where is the CI
+report or a sample result?</p>
 <p>The series explorer lives at <code>/series</code>. Use it to find benchmark families,
 filter by search text, and navigate to trend pages. Series rows show recent
 state, latest result metadata, and a compact history summary.</p>
-<p>The old Flask home page exposed run objects directly. The new home is a
-dashboard summary over submitted <code>run_id</code> values, with direct links to run
-detail, batch detail, CI reports, and sample results. Batch pages are available
-at <code>/batches/&lt;batch_id&gt;</code> when you need to inspect a suite-level grouping across
-multiple runs.</p>
-<p>Use the hardware filter when you need the useful part of the old hardware page:
-finding benchmark series for a machine or cluster name. The new dashboard does
-not carry a standalone hardware catalog page.</p>
+<p>The home dashboard groups activity by submitted <code>run_id</code> values, with direct
+links to run detail, batch detail, CI reports, and sample results. Batch pages
+are available at <code>/batches/&lt;batch_id&gt;</code> when you need to inspect a suite-level
+grouping across multiple runs.</p>
+<p>Use the hardware filter to find benchmark series for a machine or cluster name.
+Hardware is part of result and series context, so hardware investigation starts
+from benchmark activity rather than from a standalone catalog.</p>
 <p>The browse surface is designed for scanning. It favors full-width table rows,
 filters, and direct links over card grids or nested summary panels. Broad
 queries can match many production series, so pages cap rendered rows and ask you
@@ -1294,20 +1293,14 @@ it starts from a bounded window of recent default-branch commits that have
 benchmark results, then shows the latest visible member for each series. Use a
 search term, a known history fingerprint, a run page, or a CI report when you
 need an exact historical lookup for a specific benchmark family.</p>
-<p>The old <code>/c-benchmarks/*</code> pages combined several jobs: benchmark-family browse,
-case drilldown, hardware/context grouping, and cross-series trend triage. The
-new dashboard replaces the direct series-discovery, bounded family drilldown,
-and per-series investigation jobs with <code>/series</code>, <code>/series?q=&lt;benchmark&gt;</code>, and
-<code>/series/&lt;fingerprint&gt;</code>. A benchmark-name search shows a loaded family
-drilldown: case variants, hardware/context coverage, loaded history-point
-counts, and regressed/improved triage links. It is intentionally scoped to the
-loaded rows so it remains usable on large installations; load more or narrow
-the filters when you need broader coverage.</p>
-<p>The old global increasing/decreasing slope triage is retired with the BMRT
-cache. Use the loaded triage links, CI reports, and per-series outlier/step
-shortcuts to investigate current signals. If the project needs a whole-family
-analytics endpoint later, it should be designed as a scale-aware Go read model
-feature rather than a cache-era Flask page.</p>
+<p>Benchmark-name search shows a loaded family drilldown: case variants,
+hardware/context coverage, loaded history-point counts, and
+regressed/improved triage links. It is intentionally scoped to the loaded rows
+so it remains usable on large installations; load more or narrow the filters
+when you need broader coverage.</p>
+<p>Use loaded triage links, CI reports, and per-series outlier/step shortcuts to
+investigate current signals. Whole-family analytics should be treated as a
+scale-aware product workflow rather than as an unbounded table.</p>
 <h2 id="trend-detail">Trend Detail<a class="headerlink" href="#trend-detail" title="Permanent link">&para;</a></h2>
 <p>A trend page shows the result history for one fingerprint. It is the primary
 place to inspect:</p>
@@ -1338,18 +1331,18 @@ currently include errored benchmark attempts as history points.</p>
 benchmark results. The page filters by <code>run_id</code>, <code>batch_id</code>, <code>run_reason</code>, and
 timestamp bounds, then links each loaded row to result detail, run detail, batch
 detail, and the series trend.</p>
-<p>Result detail pages show the raw result payload interpreted by the new API:
+<p>Result detail pages show the raw result payload interpreted by the API:
 case tags, context, info, hardware, run metadata, GitHub metadata, unit, data,
 validation, and errors.</p>
-<p>The result page also exposes the legacy investigation fields that are easy to
-lose in a summary UI: hardware hash, history fingerprint, optional benchmark
-info, validation, change annotations, raw data/times counts, and the full JSON
-payload. Authenticated users can mark or unmark
-<code>begins_distribution_change</code> and delete a result through the dashboard; both
-actions call the same authenticated result APIs used by automation.</p>
+<p>The result page also exposes investigation fields that are easy to lose in a
+summary UI: hardware hash, history fingerprint, optional benchmark info,
+validation, change annotations, raw data/times counts, and the full JSON
+payload. Authenticated users can mark or unmark <code>begins_distribution_change</code>
+and delete a result through the dashboard; both actions call the same
+authenticated result APIs used by automation.</p>
 <p>Use <strong>Export history JSON</strong> on a result page when the browser workflow needs the
-raw history API response for that result. Use the CLI when you need the legacy
-CSV download workflow as a file.</p>
+raw history API response for that result. Use the CLI when you need a history
+CSV file.</p>
 <p>For automation and notebook workflows, the result-list API can be filtered by
 run or batch metadata:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">/api/benchmark-results?run_id=</span><span class="nv">$RUN_ID</span><span class="s2">&quot;</span>
@@ -1361,37 +1354,31 @@ submitted metadata, not separate storage objects, but the dashboard exposes
 first-class inspection pages over those result-list filters.</p>
 <p>The run detail dashboard at <code>/runs/&lt;run_id&gt;</code> lists bounded result pages for one
 submitted run, summarizes loaded results/errors/series/batches, and links to the
-run's CI report, result details, and series trends. It is a new dashboard
-surface, not a Flask-compatible API alias.</p>
+run's CI report, result details, and series trends.</p>
 <p>The batch detail dashboard at <code>/batches/&lt;batch_id&gt;</code> lists bounded result pages
 for one submitted batch, groups loaded rows by <code>run_id</code>, and links to run
-detail, CI reports, result detail, and series trends. It replaces the useful
-legacy batch workflow as a new Svelte dashboard surface, not a Flask/Jinja page
-or API compatibility alias.</p>
+detail, CI reports, result detail, and series trends.</p>
 <h2 id="history-csv-export">History CSV Export<a class="headerlink" href="#history-csv-export" title="Permanent link">&para;</a></h2>
-<p>Use the CLI when you need the legacy history-download workflow as a file:</p>
+<p>Use the CLI when you need a history CSV file:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>conbench<span class="w"> </span><span class="nb">history</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RESULT_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--server<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONBENCH_SERVER_URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--output<span class="w"> </span>history.csv
 </span></code></pre></div>
 <p>Without <code>--output</code>, the CSV is written to stdout. The CSV is generated from the
-same JSON history API that powers trend pages; the new API does not carry a
-separate Flask-compatible <code>/api/history/download/{id}/</code> route. Trend pages show
-a copyable CLI command for the selected point or entry result, and result pages
-link directly to the JSON history response.</p>
+same JSON history API that powers trend pages. Trend pages show a copyable CLI
+command for the selected point or entry result, and result pages link directly
+to the JSON history response.</p>
 <h2 id="compare">Compare<a class="headerlink" href="#compare" title="Permanent link">&para;</a></h2>
 <p>The compare page evaluates two benchmark results. Use it for manual inspection
 or links from CI report rows. The comparison includes pairwise change and
 lookback z-score analysis where enough history exists.</p>
 <p>Single-result compare expects the two results to belong to the same history
-fingerprint. That is stricter than the legacy Flask route, which could compare
-some same-unit results across different cases or contexts. The stricter rule
-keeps the pairwise value and lookback history tied to the same benchmark series.
-Open <code>/compare</code> directly when you already know result IDs, or load bounded
-candidate rows by <code>run_id</code> and select the baseline and contender from the
-picker. The picker validates known fingerprints before navigation; the compare
-API remains the source of truth for manually typed IDs. Use CI reports for
-run-to-run and commit-wide comparisons.</p>
+fingerprint, which keeps the pairwise value and lookback history tied to the
+same benchmark series. Open <code>/compare</code> directly when you already know result
+IDs, or load bounded candidate rows by <code>run_id</code> and select the baseline and
+contender from the picker. The picker validates known fingerprints before
+navigation; the compare API remains the source of truth for manually typed IDs.
+Use CI reports for run-to-run and commit-wide comparisons.</p>
 <h2 id="ci-report">CI Report<a class="headerlink" href="#ci-report" title="Permanent link">&para;</a></h2>
 <p>The CI report page groups comparisons for a commit or run selector. It is the
 web counterpart to <code>conbench ci report</code> and should be the first dashboard link
@@ -1404,9 +1391,8 @@ not-comparable row, and each run section keeps its own filtered summary.</p>
 additional matching rows on demand. The report summary always describes the
 whole report; row rendering limits are only a browser-performance guard.</p>
 <p>For manual run-to-run inspection, open a CI report URL with <code>run_ids</code> and
-<code>baseline_run_ids</code>. The new dashboard does not recreate the old
-<code>/compare/runs/{ids}/</code> route; it uses the same CI report surface and row-status
-rules as pull request diagnostics.</p>
+<code>baseline_run_ids</code>. This uses the same CI report surface and row-status rules
+as pull request diagnostics.</p>
 
 
 
